@@ -30,8 +30,6 @@ import static org.junit.Assert.*;
         "classpath:spring/spring-app.xml",
         "classpath:spring/spring-db.xml"
 })
-
-
 public class UserServiceTest {
 
     public static final int NOT_FOUND = 10;

@@ -18,45 +18,49 @@
         <div class="row">
             <div class="col-5 offset-3">
                 <a class="col-form-label">
-                    <%--  <h3><spring:message code="${restaurant.isNew() ? 'exercise.add' : 'exercise.edit'}"/></h3>--%>
-                 </a>
-                <jsp:useBean id="restaurant" type="den.graduation.model.Restaurant" scope="request"/>
-                 <hr>
-                 <form name="myForm" method="post" action="/restaurants" onsubmit="return validateForm()">
-                     <input type="hidden" name="id" value="${restaurant.id}">
-                     <%--  <dl>
-                           <dt>DateTime:</dt>
-                           <dd><input type="datetime-local" value="${exercise.exerciseDateTime}" name="exerciseDateTime"
-                                      required></dd>
+                    <h3>${restaurant.isNew() ? 'exercise.add' : 'exercise.edit'}</h3>
+                </a>
+                <%--   <jsp:useBean id="restaurant" type="den.graduation.model.Restaurant" scope="request"/>--%>
+                <hr>
+                      <form name="myForm" method="post" action="/restaurants" onsubmit="return validateForm()">
+                    <input type="hidden" name="id" value="${restaurant.id}">
+                    <%--  <dl>
+                          <dt>DateTime:</dt>
+                          <dd><input type="datetime-local" value="${exercise.exerciseDateTime}" name="exerciseDateTime"
+                                     required></dd>
 
-                           <dl>
-                               <dt>ExerciseName:</dt>
-                               <dd><input type="text" value="${exercise.exerciseName}" size=40 name="exerciseName"
-                                          required></dd>
-                           </dl>
-                           <dl>
-                               <dt>NumberOfApproaches:</dt>
-                               <dd><input type="number" value="${exercise.numberOfApproaches}"
-                                          name="numberOfApproaches" required></dd>
-                           </dl>
-                       </dl>--%>
-                        <dl>
+                          <dl>
+                              <dt>ExerciseName:</dt>
+                              <dd><input type="text" value="${exercise.exerciseName}" size=40 name="exerciseName"
+                                         required></dd>
+                          </dl>
+                          <dl>
+                              <dt>NumberOfApproaches:</dt>
+                              <dd><input type="number" value="${exercise.numberOfApproaches}"
+                                         name="numberOfApproaches" required></dd>
+                          </dl>
+                      </dl>--%>
+                    <dl>
                             <%--   <dt>Имя ресторана:</dt>--%>
-                              <div class="form-group">
-                                  <%--  <label for="name" class="col-form-label"></label>--%>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Имя ресторана" required>
-                            </div>
-                        </dl>
-                        <dl>
-                            <%--  <dt>Количество голосов:</dt>--%>
-                             <div class="form-group">
-                                 <%--   <label for="numberOfVotes" class="col-form-label"></label>--%>
-                                <input type="number" class="form-control" id="numberOfVotes" name="numberOfVotes" placeholder="Количество голосов" required>
-                            </div>
-                        </dl>
+                        <div class="form-group">
+                                <%--  <label for="name" class="col-form-label"></label>--%>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Имя ресторана"
+                                   required>
+                            <form:errors path="name" cssClass="error"/>
 
-                        <button type="submit">Save</button>
-                        <button onclick="window.history.back()" type="button">Cancel</button>
+                        </div>
+                    </dl>
+                    <dl>
+                            <%--  <dt>Количество голосов:</dt>--%>
+                        <div class="form-group">
+                                <%--   <label for="numberOfVotes" class="col-form-label"></label>--%>
+                            <input type="number" class="form-control" id="numberOfVotes" name="numberOfVotes"
+                                   placeholder="Количество голосов" required>
+                        </div>
+                    </dl>
+
+                    <button type="submit">Save</button>
+                    <button onclick="window.history.back()" type="button">Cancel</button>
                 </form>
             </div>
         </div>
@@ -65,7 +69,7 @@
 <script>
     function validateForm() {
         var element = document.forms["myForm"]["foodOne"].value;
-        if (element>100 || element <11) {
+        if (element > 100 || element < 11) {
             alert("Количество не может быть меньше 1 и больше 10");
             return false;
         }

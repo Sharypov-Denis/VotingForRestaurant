@@ -24,14 +24,14 @@
                 <hr>
                 <form name="myForm" method="post" action="/menu" onsubmit="return validateForm()">
                     <input type="hidden" name="menuid" value="${menu.id}">
-                    <input type="hidden" name="id" value="${restaurant.id}">
-<%--
-                      <dl>
-                           <dt>DateTime:</dt>
-                           <dd><input type="datetime-local" value="${exercise.exerciseDateTime}" name="exerciseDateTime"
-                                      required></dd>
+                    <%--  <input type="hidden" name="id" value="${restaurant.id}">--%>
+ <%--
+                       <dl>
+                            <dt>DateTime:</dt>
+                            <dd><input type="datetime-local" value="${exercise.exerciseDateTime}" name="exerciseDateTime"
+                                       required></dd>
 
-                       </dl>--%>
+                        </dl>--%>
 
                     <dl>
                         <div class="form-group">

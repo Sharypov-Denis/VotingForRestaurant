@@ -31,7 +31,7 @@ public class Restaurant {
     private Integer id;
 
     @Column(name = "name", nullable = false)
-    @NotBlank
+   // @NotBlank
     @Size(min = 2, max = 120)
     private String name;
 

@@ -39,11 +39,11 @@ public class User {
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotBlank
-    @Size(max = 100)
+    @Size(min = 2, max = 100)
     private String email;
 
     @NotBlank
-    @Size(min = 2, max = 100)
+    @Size(min = 2, max = 100, message = "name must be")
     @Column(name = "name", nullable = false)
     protected String name;
 

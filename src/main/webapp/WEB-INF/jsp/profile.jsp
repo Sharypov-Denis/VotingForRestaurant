@@ -4,7 +4,13 @@
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
-
+<style>
+    .error {
+        color: red;
+        font-size: 0.9em;
+        font-weight: bold;
+    }
+</style>
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
@@ -35,30 +41,33 @@
 
                 <jsp:useBean id="user" type="den.graduation.model.User" scope="request"/>
                 <hr>
-                    <form:form name="profileForm" class="form-group" method="post" action="/profile/register" onsubmit="return validateUser()">
-               <!-- <form name="myForm" method="post" action="/profile/register" onsubmit="return validateForm()">-->
+                <form:form name="profileForm" class="form-group" method="post" modelAttribute="user"
+                           action="/profile/register" onsubmit="return validateUser()">
+                    <!-- <form name="myForm" method="post" action="/profile/register" onsubmit="return validateForm()">-->
                     <input type="hidden" name="id" value="${user.id}">
-                    <dl>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="name" name="name"
-                                   placeholder="Имя пользователя">
-                        </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="name" name="name"
+                               placeholder="Имя пользователя">
+                        <form:errors path="name" cssClass="error"/>
+                    </div>
+                    <%--<dt>EMAIL:</dt>
+                    <dd><input type="email" value="${user.email}" name="email" required></dd>--%>
+
+                    <div class="form-group">
+                            <%-- <dt><form:errors path="email" cssstyle="color: red;"/></dt>--%>
+                        <input type="email" class="form-control" id="email" name="email"
+                               placeholder="E-mail">
+                        <form:errors path="email" cssClass="error"/>
+                    </div>
                     </dl>
-                        <%--<dt>EMAIL:</dt>
-                        <dd><input type="email" value="${user.email}" name="email" required></dd>--%>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="email" name="email"
-                                   placeholder="E-mail">
-                        </div>
-                    </dl>
-                    <dl>
-                        <%-- <dt>Password:</dt>
-                        <dd><input type="password" value="${user.password}" name="password" required></dd>--%>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="password" name="password"
-                                   placeholder="Пароль">
-                        </div>
-                    </dl>
+                    <%--  <dl>--%>
+                    <%-- <dt>Password:</dt>
+                    <dd><input type="password" value="${user.password}" name="password" required></dd>--%>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" name="password"
+                               placeholder="Пароль">
+                    </div>
+                    <%--  </dl>--%>
                     <!--<button type="submit">Save</button>
                     <button onclick="window.history.back()" type="button">Cancel</button>-->
 
@@ -72,8 +81,8 @@
                             Сохранить
                         </button>
                     </div>
-               <!-- </form>-->
-                    </form:form>
+                    <!-- </form>-->
+                </form:form>
             </div>
         </div>
     </div>

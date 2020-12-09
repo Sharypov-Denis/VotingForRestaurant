@@ -25,6 +25,7 @@ public class DataJPARestaurantRepository implements RestaurantRepository {
         if (!restaurant.isNew() && get(restaurant.getId(), userId) == null) {
             return null;
         }
+
         restaurant.setUser(crudUserRepository.getOne(userId));
         return crudRestaurantRepository.save(restaurant);
     }

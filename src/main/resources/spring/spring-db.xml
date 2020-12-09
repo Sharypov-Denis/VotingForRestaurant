@@ -34,20 +34,23 @@
         </property>
 
 
-             <!--поиск сущностей в этом пакете-->
+        <!--поиск сущностей в этом пакете-->
         <property name="packagesToScan"
                   value="den.graduation"/>
         <property name="jpaPropertyMap">
             <map>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
-                <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}" value="${hibernate.use_sql_comments}"/>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}"
+                       value="${hibernate.use_sql_comments}"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).JPA_PROXY_COMPLIANCE}" value="false"/>
 
                 <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl.auto}"/>-->
 
                 <!--https://github.com/hibernate/hibernate-orm/blob/master/documentation/src/main/asciidoc/userguide/chapters/caching/Caching.adoc#caching-provider-jcache-->
-                <entry key="#{T(org.hibernate.cfg.AvailableSettings).CACHE_REGION_FACTORY}" value="org.hibernate.cache.jcache.internal.JCacheRegionFactory"/>
-                <entry key="#{T(org.hibernate.cache.jcache.ConfigSettings).PROVIDER}" value="org.ehcache.jsr107.EhcacheCachingProvider"/>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).CACHE_REGION_FACTORY}"
+                       value="org.hibernate.cache.jcache.internal.JCacheRegionFactory"/>
+                <entry key="#{T(org.hibernate.cache.jcache.ConfigSettings).PROVIDER}"
+                       value="org.ehcache.jsr107.EhcacheCachingProvider"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SECOND_LEVEL_CACHE}" value="true"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_QUERY_CACHE}" value="false"/> <!--default-->
 
@@ -63,20 +66,22 @@
 
 
     <!-- Datasource. Источник данных - база PostgresSQL -->
-    <!--   <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>-->
+    <!--    <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>-->
     <!-- Datasource. Источник данных - база HSQLDB -->
-    <!--  <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>-->
+    <!-- <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>-->
     <!-- Datasource. Источник данных - база Heroku -->
 
 
-     <!-- Datasource. Источник данных - база Postgres/HSQLDB -->
-    <!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-          p:driverClassName="${database.driverClassName}"
-          p:url="${database.url}"
-          p:username="${database.username}"
-          p:password="${database.password}"/>-->
+    <!-- Datasource. Источник данных - база Postgres/HSQLDB -->
+    <!--  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+           p:driverClassName="${database.driverClassName}"
+           p:url="${database.url}"
+           p:username="${database.username}"
+           p:password="${database.password}"/>-->
 
     <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
+
+
     <bean class="java.net.URI" id="dbUrl">
         <constructor-arg value="${DATABASE_URL}"/>
     </bean>
@@ -96,6 +101,14 @@
           p:removeAbandoned="true"
           p:testOnConnect="true"
           p:testWhileIdle="true"/>
+
+
+    <!--
+              <beans profile="tomcat">
+                  <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/VoteTest"/>
+                  <context:property-placeholder location="classpath:db/tomcat.properties" system-properties-mode="OVERRIDE"/>
+              </beans>-->
+
 
     <!--другой способ
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -122,8 +135,4 @@
 
     -->
 
-    <beans profile="tomcat">
-        <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/topjava"/>
-        <context:property-placeholder location="classpath:db/tomcat.properties" system-properties-mode="OVERRIDE"/>
-    </beans>
-   </beans>
+</beans>

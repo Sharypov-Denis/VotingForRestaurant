@@ -1,1 +1,1 @@
-web:    java -DVOTETEST_ROOT="." -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
+web:    -jar target/dependency/webapp-runner.jar --port $PORT target/*.war

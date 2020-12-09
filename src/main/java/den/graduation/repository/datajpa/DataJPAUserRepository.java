@@ -18,9 +18,9 @@ public class DataJPAUserRepository implements UserRepository {
 
     @Override
     public User save(User user) {
-        //User newUser = new User(null, user.getName(), user.getEmail().toLowerCase(), user.getPassword(), Role.USER);
-        //return crudUserRepository.save(newUser);
-        return crudUserRepository.save(user);
+        User newUser = new User(null, user.getName(), user.getEmail().toLowerCase(), user.getPassword(), Role.USER);
+        return crudUserRepository.save(newUser);
+        //return crudUserRepository.save(user);
     }
 
     @Override

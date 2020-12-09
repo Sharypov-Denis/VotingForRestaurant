@@ -68,18 +68,18 @@
     <!-- Datasource. Источник данных - база PostgresSQL -->
     <!--    <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>-->
     <!-- Datasource. Источник данных - база HSQLDB -->
-    <!-- <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>-->
+    <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>
     <!-- Datasource. Источник данных - база Heroku -->
 
 
     <!-- Datasource. Источник данных - база Postgres/HSQLDB -->
-    <!--  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
            p:driverClassName="${database.driverClassName}"
            p:url="${database.url}"
            p:username="${database.username}"
-           p:password="${database.password}"/>-->
+           p:password="${database.password}"/>
 
-    <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
+    <!--  <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
 
 
     <bean class="java.net.URI" id="dbUrl">
@@ -103,7 +103,7 @@
           p:testWhileIdle="true"/>
 
 
-    <!--
+
               <beans profile="tomcat">
                   <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/VoteTest"/>
                   <context:property-placeholder location="classpath:db/tomcat.properties" system-properties-mode="OVERRIDE"/>

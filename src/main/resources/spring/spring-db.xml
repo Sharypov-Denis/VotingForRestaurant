@@ -119,5 +119,11 @@
            <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/VoteProject"/>
            <context:property-placeholder location="classpath:db/tomcat.properties" system-properties-mode="OVERRIDE"/>
        </beans>
+
     -->
+
+    <beans profile="tomcat">
+        <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/topjava"/>
+        <context:property-placeholder location="classpath:db/tomcat.properties" system-properties-mode="OVERRIDE"/>
+    </beans>
    </beans>

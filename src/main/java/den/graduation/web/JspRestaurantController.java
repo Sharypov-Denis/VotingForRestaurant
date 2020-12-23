@@ -123,7 +123,7 @@ public class JspRestaurantController extends RestaurantRestController {
         System.out.println(list);
 
 
-        if (list != null && DataUtil.Utilll(list) == true) {
+        if (list != null && DataUtil.newVoting(list) == true) {
             System.out.println("вы уже голосовали и проголосовать не сможете!!!");
         } else {
             System.out.println("вы можете голосовать!!");

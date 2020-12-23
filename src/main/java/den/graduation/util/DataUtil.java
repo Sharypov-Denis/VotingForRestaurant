@@ -38,7 +38,7 @@ public class DataUtil {
 
     }
 
-    public static boolean Utilll(List<Voting> votings) {
+    public static boolean newVoting(List<Voting> votings) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
         String str = format.format(new Date());
         Date date = null;
@@ -75,6 +75,46 @@ public class DataUtil {
         }
         return isNew;
     }
+
+    public static boolean UpdateVoting(List<Voting> votings) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
+        String str = format.format(new Date());
+        Date date = null;
+        /*
+        Date dateNow = new Date();
+        LocalDate localDateNow = convertToLocalDateViaInstant(dateNow);
+        System.out.println("Дата сегодня: " + dateNow);
+
+        localDateNow.atTime(11,00);
+        System.out.println("Дата сегодня + 11 часов: " + localDateNow);
+
+         */
+
+        try {
+            date = format.parse(str);
+        } catch (ParseException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        System.out.println("Дата сегодня: " + date);
+        LocalDate localDateNow = convertToLocalDateViaInstant(date);
+        LocalDateTime localDateTime = localDateNow.atTime(11,00);
+        System.out.println("Дата сегодня + 11 часов: " + localDateTime);
+
+        boolean isNew = false;
+        for (int i = 0; i < votings.size(); i++) {
+            System.out.println("Дата голоса: " + votings.get(i).getRegistered());
+            System.out.println("Дата сегодня: " + date);
+            System.out.println("Дата голоса в LOCALDATE: " + convertToLocalDateViaInstant(votings.get(i).getRegistered()));
+            if (convertToLocalDateTimeViaInstant(votings.get(i).getRegistered()).isAfter(localDateTime)){
+                System.out.println("вы уже голосовали и проголосовать не сможете");
+                isNew = true;
+            }
+
+        }
+        return isNew;
+    }
+
 
     public static LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
         return dateToConvert.toInstant()

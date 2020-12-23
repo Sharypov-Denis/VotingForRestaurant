@@ -24,6 +24,7 @@
     </div>
 </nav>--%>
 
+
 <nav class="navbar navbar-expand-md navbar-dark bg-dark py-0">
     <div class="container">
         <a href="restaurants" class="navbar-brand">Выпускной проект "Голосование"</a>

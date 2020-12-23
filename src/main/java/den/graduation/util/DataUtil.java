@@ -106,11 +106,10 @@ public class DataUtil {
             System.out.println("Дата голоса: " + votings.get(i).getRegistered());
             System.out.println("Дата сегодня: " + date);
             System.out.println("Дата голоса в LOCALDATE: " + convertToLocalDateViaInstant(votings.get(i).getRegistered()));
-            if (convertToLocalDateTimeViaInstant(votings.get(i).getRegistered()).isAfter(localDateTime)){
-                System.out.println("вы уже голосовали и проголосовать не сможете");
-                isNew = true;
+            if (convertToLocalDateTimeViaInstant(votings.get(i).getRegistered()).isAfter(convertToLocalDateTimeViaInstant(date))){
+                System.out.println("вы уже проголосовали, но все равно можете проголосовать еще");
+                    isNew = true;
             }
-
         }
         return isNew;
     }

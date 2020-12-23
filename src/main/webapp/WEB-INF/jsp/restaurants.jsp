@@ -45,7 +45,7 @@
                                 </c:forEach>
                             </li>
                         </ul>
-                        <a class="btn btn-lg btn-block btn-primary" href="restaurants/voting?id=${restaurant.id}">
+                        <a class="btn btn-lg btn-warning" href="restaurants/voting?id=${restaurant.id}">
                             ПРОГОЛОСОВАТЬ</a>
                         <sec:authorize access="hasRole('ADMIN')">
                             <td><a class="btn btn-lg btn-block btn-primary"

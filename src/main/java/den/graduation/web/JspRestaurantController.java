@@ -123,10 +123,15 @@ public class JspRestaurantController extends RestaurantRestController {
         System.out.println(list);
 
 
-        if (list != null && DataUtil.newVoting(list) == true) {
-            System.out.println("вы уже голосовали и проголосовать не сможете!!!");
+        if (list != null && DataUtil.UpdateVoting(list) == true) {
+            System.out.println("вы уже проголосовали, но все равно можете проголосовать еще - проверяем");
+            if (DataUtil.newVoting(list) == true) {
+                System.out.println("вы уже голосовали и проголосовать не сможете");
+            } else {
+                System.out.println("вы уже голосовали b вы можете голосовать еще!!");
+                votingService.create(voting, getId(request), userId);
+            }
         } else {
-            System.out.println("вы можете голосовать!!");
             votingService.create(voting, getId(request), userId);
             restaurantService.updateById(getId(request));
         }

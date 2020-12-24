@@ -12,13 +12,10 @@
 </head>
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
+<sec:authorize access="hasRole('ADMIN')">
+    <a href="restaurants/create" class="btn btn-lg btn-primary"><span>Добавить ресторан</span></a>
+</sec:authorize>
 <section>
-    <sec:authorize access="hasRole('ADMIN')">
-        <div class="text-center text-right mt-4">
-            <a href="restaurants/create" class="btn btn-lg btn-warning"><span>Add Restaurant</span></a>
-        </div>
-    </sec:authorize>
-
     <div class="container">
         <c:forEach items="${restaurants}" var="restaurant">
             <div class="card mb-4 box-shadow">
@@ -39,24 +36,24 @@
                                 </tr>
                                 <tr>
                                     <sec:authorize access="hasRole('ADMIN')">
-                                        <td><a href="/menu/delete?id=${num.id}">Delete</a></td>
+                                        <td><a href="/menu/delete?id=${num.id}">Удалить меню</a></td>
                                     </sec:authorize>
                                 </tr>
                             </c:forEach>
                         </li>
                     </ul>
                     <a class="btn btn-lg btn-warning" href="restaurants/voting?id=${restaurant.id}">
-                        ПРОГОЛОСОВАТЬ</a>
+                        Проголосовать за ресторан</a>
                     <sec:authorize access="hasRole('ADMIN')">
                         <td><a class="btn btn-lg btn-block btn-primary"
-                               href="restaurants/delete?id=${restaurant.id}">Delete Restaurant</a></td>
+                               href="restaurants/delete?id=${restaurant.id}">Удалить ресторан</a></td>
                         <td><a class="btn btn-lg btn-block btn-primary"
-                               href="restaurants/update?id=${restaurant.id}">Update Restaurant</a></td>
+                               href="restaurants/update?id=${restaurant.id}">Редактировать ресторан</a></td>
                     </sec:authorize>
                     <sec:authorize access="hasRole('ADMIN')">
                         <a class="btn btn-lg btn-block btn-primary" href="/menu/createMenu?id=${restaurant.id}">
                             <span class="fa fa-plus"></span>
-                            ADD MENU</a>
+                            Добавить меню</a>
                     </sec:authorize>
                 </div>
             </div>

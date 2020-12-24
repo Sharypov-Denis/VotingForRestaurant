@@ -19,7 +19,7 @@
         <sec:authorize access="isAnonymous()">
 
             <div class="pt-4">
-                <a class="btn btn-lg btn-success" href="profile/register">Registration</a>
+                <a class="btn btn-lg btn-success" href="profile/register">Зарегистрироваться</a>
                 <button type="submit" class="btn btn-lg btn-primary" onclick="login('user@yandex.ru', 'password')">
                     Зайти как пользователь USER
                 </button>

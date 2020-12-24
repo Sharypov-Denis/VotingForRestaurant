@@ -14,10 +14,10 @@
     <div class="pt-4">
         <a class="btn btn-lg btn-success" href="profile/register">Registration</a>
         <button type="submit" class="btn btn-lg btn-primary" onclick="login('user@yandex.ru', 'password')">
-            LOGIN User
+            Войти как User
         </button>
         <button type="submit" class="btn btn-lg btn-primary" onclick="login('admin@gmail.com', 'admin')">
-            LOGIN Admin
+            Войти как Admin
         </button>
     </div>
 </sec:authorize>

@@ -32,7 +32,7 @@ public class AdminUIController {
 
     @GetMapping("/delete")
     public String register(HttpServletRequest request) {
-       userService.delete(getId(request));
+        userService.delete(getId(request));
         return "redirect:/admin/users";
     }
 

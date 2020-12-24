@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
+
 import javax.validation.Valid;
 
 @Controller
@@ -31,7 +32,7 @@ public class ProfileUIController {
     }
 
     @PostMapping("/register")
-    public String saveRegister(@Valid @ModelAttribute("user")User user, BindingResult result, SessionStatus status, ModelMap model) {
+    public String saveRegister(@Valid @ModelAttribute("user") User user, BindingResult result, SessionStatus status, ModelMap model) {
         userValidator.validate(user, result);
         if (result.hasErrors()) {
             model.addAttribute("register", true);

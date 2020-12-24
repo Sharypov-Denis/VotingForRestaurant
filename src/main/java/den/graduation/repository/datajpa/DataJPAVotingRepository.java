@@ -28,35 +28,9 @@ public class DataJPAVotingRepository {
         System.out.println(voting);
         return crudVotingRepository.save(voting);
     }
-/*
-    @Override
-    public boolean delete(int id) {
-        return crudMenuRepository.delete(id) != 0;
-    }
-
-
-
-
-    public Voting get(int id, int votingId) {
-        return crudMenuRepository.findById(id)
-                .filter(voting -> voting.getRestaurant().getId() == restaurantId)
-                .orElse(null);
-    } */
 
     public List<Voting> getAllByUser(int userId) {
         return crudVotingRepository.getAllByUser(userId);
     }
-/*
-    @Override
-    public Voting getWithRestaurant(int id, int restaurantId) {
-        return crudMenuRepository.getWithRestaurant(id, restaurantId);
-    }
-
-    public List<Voting> getAllMenu() {
-        return crudMenuRepository.getAllMenu();
-    }
-
- */
-
 
 }

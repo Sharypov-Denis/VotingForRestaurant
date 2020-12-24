@@ -3,14 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <fmt:setBundle basename="messages.app"/>
 
-<%-- убрал с добавлением webjars
-<hr>
-<footer><fmt:message key="app.footer"/></footer>--%>
-
-
-<%--https://getbootstrap.com/docs/4.0/examples/sticky-footer/--%>
 <footer class="footer">
     <div class="container">
-        <span class="text-muted">Выпускной проект Шарыпова Д.А.</span>
+        <span class="text-muted">Выпускной проект Шарыпова Д.А.(Проект постоянно дорабатывает и проводится рефакторинг кода</span>
     </div>
 </footer>

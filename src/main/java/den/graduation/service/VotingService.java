@@ -18,7 +18,7 @@ public class VotingService {
     }
 
     public Voting create(Voting voting, int restaurantId, int userId) {
-        Assert.notNull(voting, "restaurant must not be null");
+        Assert.notNull(voting, "voting must not be null");
         return repository.save(voting, restaurantId, userId);
     }
     public List<Voting> getAllByUser(int userId) {

@@ -8,21 +8,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import static java.util.Objects.requireNonNull;
 
 public class SecurityUtil {
-/*
-    private static int id = User.START_SEQ;
-
-    private SecurityUtil() {
-    }
-
-    public static int authUserId() {
-        return id;
-    }
-
-    public static void setAuthUserId(int id) {
-    SecurityUtil.id = id;
-    }
-
- */
 
     private SecurityUtil() {
     }
@@ -43,8 +28,5 @@ public class SecurityUtil {
     public static int authUserId() {
         return get().getUserTo().getId();
     }
-
-
-
 
 }

@@ -34,7 +34,7 @@ public abstract class RestaurantRestController {
     public Restaurant create(Restaurant exercise) {
         int userId = SecurityUtil.authUserId();
         //checkNew(exercise);
-       // log.info("create {} for user {}", exercise, userId);
+        // log.info("create {} for user {}", exercise, userId);
         return service.create(exercise, userId);
     }
 

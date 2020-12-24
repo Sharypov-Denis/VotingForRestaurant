@@ -7,21 +7,6 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
-<%--
-<div class="jumbotron">
-    <div class="container">
-        <form method="post" action="users" class="form-inline">
-            Login </label>
-            <select name="userId" class="form-control mx-3">
-                <option value="100000" selected>User</option>
-                <option value="100001">Admin</option>
-            </select>
-            <button type="submit" class="btn btn-primary">Выбрать</button>
-        </form>
-    </div>
-</div>
---%>
-
 <a href="/restaurants" class="btn btn-lg btn-warning"><span>Список ресторанов для голосования</span></a>
 
 <sec:authorize access="isAnonymous()">
@@ -39,11 +24,12 @@
 
 <script type="text/javascript">
     var context, form;
-function add() {
-$("#modalTitle").html(i18n["addTitle"]);
-form.find(":input").val("");
-$("#editRow").modal();
-}
+
+    function add() {
+        $("#modalTitle").html(i18n["addTitle"]);
+        form.find(":input").val("");
+        $("#editRow").modal();
+    }
 
 </script>
 <script type="text/javascript">
@@ -55,8 +41,6 @@ $("#editRow").modal();
     i18n["${key}"] = ${key}";
     </c:forEach>
 </script>
-<%--удалить--%>
-
 
 </body>
 <jsp:include page="fragments/footer.jsp"/>

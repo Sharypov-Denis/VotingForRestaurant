@@ -2,7 +2,6 @@ package den.graduation.service;
 
 import den.graduation.model.Restaurant;
 import den.graduation.repository.RestaurantRepository;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -30,9 +29,9 @@ public class RestaurantService {
         return repository.getAll(userId);
     }
 
-    public void update(Restaurant exercise, int userId) {
-        Assert.notNull(exercise, "exercise must not be null");
-        repository.save(exercise, userId);
+    public void update(Restaurant restaurant, int userId) {
+        Assert.notNull(restaurant, "restaurant must not be null");
+        repository.save(restaurant, userId);
     }
 
     public Restaurant create(Restaurant restaurant, int userId) {

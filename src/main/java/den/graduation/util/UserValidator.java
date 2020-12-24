@@ -12,13 +12,6 @@ import java.util.List;
 @Component
 public class UserValidator implements org.springframework.validation.Validator {
 
-    /*так было до появления service
-        @Autowired
-        @Qualifier("jpaDogDAO")//тут указываем имплементацию репозитория которую используем
-        private DogDAO storage;
-
-     */
-///*
     private final UserRepository repository;
     private final RestaurantRepository restaurantRepository;
 
@@ -55,15 +48,6 @@ public class UserValidator implements org.springframework.validation.Validator {
                     "email", "","This email is already in use"
             );
         }
-/*
-        String name = user.getName();
-        if ((repository.getByEmail(email)) != null) {
-            errors.rejectValue(
-                    "name", "", "This name is already in use"
-            );
-        }
-
- */
 
     }
 }

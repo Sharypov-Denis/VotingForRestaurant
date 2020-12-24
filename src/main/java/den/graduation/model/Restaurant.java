@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 @NamedQueries({
         @NamedQuery(name = Restaurant.ALL_SORTED, query = "SELECT m FROM Restaurant m WHERE m.user.id=:userId"),
         @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant m WHERE m.id=:id AND m.user.id=:userId"),
@@ -16,7 +17,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "restaurant")
-@Proxy(lazy=false)//добавил из-за ошибки
+@Proxy(lazy = false)//добавил из-за ошибки
 public class Restaurant {
 
     public static final int START_SEQ = 100000;
@@ -31,7 +32,7 @@ public class Restaurant {
     private Integer id;
 
     @Column(name = "name", nullable = false)
-   // @NotBlank
+    // @NotBlank
     @Size(min = 2, max = 120)
     private String name;
 
@@ -139,6 +140,5 @@ public class Restaurant {
     public boolean isNew() {
         return this.id == null;
     }
-
 
 }

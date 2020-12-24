@@ -31,12 +31,12 @@ public class MenuService {
     }
 
     public void update(Menu menu, int restaurantId) {
-        Assert.notNull(menu, "exercise must not be null");
+        Assert.notNull(menu, "menu must not be null");
         repository.save(menu, restaurantId);
     }
 
     public Menu create(Menu menu, int restaurantId) {
-        Assert.notNull(menu, "restaurant must not be null");
+        Assert.notNull(menu, "menu must not be null");
         return repository.save(menu, restaurantId);
     }
 

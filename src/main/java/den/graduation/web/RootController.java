@@ -25,13 +25,12 @@ public class RootController {
     @Autowired
     private RestaurantService restaurantService;
 
-    //новое старт
     @Autowired
     private MenuService menuService;
 
     @GetMapping("/")
     public String root() {
-      //  return "index";
+        //  return "index";
         return "index";
     }
 
@@ -55,9 +54,9 @@ public class RootController {
 
     @GetMapping("/restaurants")
     public String getRestaurant(Model model) {
-         model.addAttribute("restaurants",
+        model.addAttribute("restaurants",
                 //       restaurantService.getAll(SecurityUtil.authUserId())); //возвращает по id
-         restaurantService.getAllRestaurants());
+                restaurantService.getAllRestaurants());
         model.addAttribute("time", DataUtil.getDateNow());
         return "restaurants";
     }

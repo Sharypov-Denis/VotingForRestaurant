@@ -83,32 +83,6 @@ public class JspRestaurantController extends RestaurantRestController {
             return "redirect:/restaurants";
         }
 
-    /*
-    @PostMapping
-    public String updateOrCreate(HttpServletRequest request, @Valid @ModelAttribute("restaurant") Restaurant rest, BindingResult result, ModelMap model) {
-       Restaurant restaurant = new Restaurant(
-                request.getParameter("name"),
-                Integer.parseInt(request.getParameter("numberOfVotes")));
-
-
-
-        validatorRest.validate1(rest, result);
-        if (result.hasErrors()) {
-            model.addAttribute("register", true);
-            return "restaurantForm";
-        }
-
-        if (request.getParameter("id").isEmpty()) {
-            super.create(restaurant);
-        } else {
-            super.update(restaurant, getId(request));
-
-        }
-        return "redirect:/restaurants";
-    }
-
-     */
-
     private int getId(HttpServletRequest request) {
         String paramId = Objects.requireNonNull(request.getParameter("id"));
         System.out.println("test - " + paramId + " !!!");
@@ -124,11 +98,11 @@ public class JspRestaurantController extends RestaurantRestController {
 
 
         if (list != null && DataUtil.UpdateVoting(list) == true) {
-            System.out.println("вы уже проголосовали, но все равно можете проголосовать еще - проверяем");
+            System.out.println("вы уже проголосовали, но возможно можете проголосовать еще - проверяем");
             if (DataUtil.newVoting(list) == true) {
                 System.out.println("вы уже голосовали и проголосовать не сможете");
             } else {
-                System.out.println("вы уже голосовали b вы можете голосовать еще!!");
+                System.out.println("вы уже голосовали, но вы можете голосовать еще!!");
                 votingService.create(voting, getId(request), userId);
             }
         } else {

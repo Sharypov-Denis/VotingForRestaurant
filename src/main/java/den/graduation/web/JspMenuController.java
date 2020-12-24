@@ -54,7 +54,7 @@ public class JspMenuController {
     public String create(Model model, HttpServletRequest request) {
         //model.addAttribute("restaurant", new Restaurant("", "", 0));
         model.addAttribute("menu", new Menu("", 0));
-        restaurantId=getId(request);
+        restaurantId = getId(request);
         return "menuForm";
     }
 
@@ -68,15 +68,6 @@ public class JspMenuController {
         menu.setRestaurant(restaurant);
 
         menuService.create(menu, restaurantId);
-        /*
-        if (request.getParameter("id").isEmpty()) {
-            menuService.create(menu, restaurant.getId());
-
-        } else {
-            menuService.update(menu,getId(request));
-        }
-
-         */
 
         return "redirect:/restaurants";
     }
@@ -84,11 +75,10 @@ public class JspMenuController {
     private int getId(HttpServletRequest request) {
         try {
             request.setCharacterEncoding("UTF8");
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println("ERRORS");
         }
-        System.out.println("test start- " +  " !!!");
+        System.out.println("test start- " + " !!!");
         String paramId = Objects.requireNonNull(request.getParameter("id"));
         System.out.println("test - " + paramId + " !!!");
         return Integer.parseInt(paramId);

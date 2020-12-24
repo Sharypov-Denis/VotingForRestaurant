@@ -74,10 +74,10 @@
 
     <!-- Datasource. Источник данных - база Postgres/HSQLDB -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-           p:driverClassName="${database.driverClassName}"
-           p:url="${database.url}"
-           p:username="${database.username}"
-           p:password="${database.password}"/>
+          p:driverClassName="${database.driverClassName}"
+          p:url="${database.url}"
+          p:username="${database.username}"
+          p:password="${database.password}"/>
 
     <!--  <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
 

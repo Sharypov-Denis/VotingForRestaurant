@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "menu")
-@Proxy(lazy=false)//добавил из-за ошибки
+@Proxy(lazy = false)//добавил из-за ошибки
 public class Menu {
     public static final int START_SEQ = 100000;
 
@@ -24,7 +24,7 @@ public class Menu {
     private String name;
 
     @Column(name = "price", nullable = false)
-   // @NotBlank
+    // @NotBlank
     //@Size(min = 2, max = 120)
     private int price;
 
@@ -32,7 +32,6 @@ public class Menu {
     @JoinColumn(name = "restaurant_id", nullable = false)
     @NotNull
     private Restaurant restaurant;
-
 
     public Menu() {
     }

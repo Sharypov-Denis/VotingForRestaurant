@@ -42,16 +42,6 @@ public class DataUtil {
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
         String str = format.format(new Date());
         Date date = null;
-        /*
-        Date dateNow = new Date();
-        LocalDate localDateNow = convertToLocalDateViaInstant(dateNow);
-        System.out.println("Дата сегодня: " + dateNow);
-
-        localDateNow.atTime(11,00);
-        System.out.println("Дата сегодня + 11 часов: " + localDateNow);
-
-         */
-
         try {
             date = format.parse(str);
         } catch (ParseException ex) {
@@ -80,15 +70,6 @@ public class DataUtil {
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
         String str = format.format(new Date());
         Date date = null;
-        /*
-        Date dateNow = new Date();
-        LocalDate localDateNow = convertToLocalDateViaInstant(dateNow);
-        System.out.println("Дата сегодня: " + dateNow);
-
-        localDateNow.atTime(11,00);
-        System.out.println("Дата сегодня + 11 часов: " + localDateNow);
-
-         */
 
         try {
             date = format.parse(str);

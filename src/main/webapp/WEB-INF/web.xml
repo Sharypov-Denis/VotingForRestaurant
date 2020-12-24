@@ -6,11 +6,6 @@
 
     <display-name>VoteProject</display-name>
 
-   <!-- <context-param>
-        <param-name>spring.profiles.default</param-name>
-        <param-value>postgres,datajpa</param-value>
-    </context-param>-->
-
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>
@@ -36,7 +31,6 @@
         <servlet-name>mvc-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
 
     <!-- Spring Security -->
     <filter>

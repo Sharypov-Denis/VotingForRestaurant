@@ -1,10 +1,8 @@
 package den.graduation.web;
 
 
-import den.graduation.SecurityUtil;
 import den.graduation.model.Menu;
 import den.graduation.model.Restaurant;
-import den.graduation.repository.datajpa.DataJPAVotingRepository;
 import den.graduation.service.MenuService;
 import den.graduation.service.RestaurantService;
 import den.graduation.service.UserService;
@@ -14,10 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.Objects;
 
 

@@ -2,11 +2,11 @@ package den.graduation.repository.datajpa;
 
 import den.graduation.model.Restaurant;
 import den.graduation.repository.RestaurantRepository;
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 
 @Repository
 public class DataJPARestaurantRepository implements RestaurantRepository {

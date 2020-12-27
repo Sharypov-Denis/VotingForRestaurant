@@ -8,20 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 
-public abstract class RestaurantRestController {
+public abstract class AbstractRestaurantController {
 
     @Autowired
     private RestaurantService service;
 
     public Restaurant get(int id) {
         int userId = SecurityUtil.authUserId();
-        //log.info("get exercise {} for user {}", id, userId);
+        //log.info("get restaurant {} for user {}", id, userId);
         return service.get(id, userId);
     }
 
     public void delete(int id) {
         int userId = SecurityUtil.authUserId();
-        //log.info("delete exercise {} for user {}", id, userId);
+        //log.info("delete restaurant {} for user {}", id, userId);
         service.delete(id, userId);
     }
 
@@ -31,17 +31,17 @@ public abstract class RestaurantRestController {
         return service.getAll(userId);
     }
 
-    public Restaurant create(Restaurant exercise) {
+    public Restaurant create(Restaurant restaurant) {
         int userId = SecurityUtil.authUserId();
-        //checkNew(exercise);
-        // log.info("create {} for user {}", exercise, userId);
-        return service.create(exercise, userId);
+        //checkNew(restaurant);
+        // log.info("create {} for user {}", restaurant, userId);
+        return service.create(restaurant, userId);
     }
 
-    public void update(Restaurant exercise, int id) {
+    public void update(Restaurant restaurant, int id) {
         int userId = SecurityUtil.authUserId();
-        //assureIdConsistent(exercise, id);
-        //log.info("update {} for user {}", exercise, userId);
-        service.update(exercise, userId);
+        //assureIdConsistent(restaurant, id);
+        //log.info("update {} for user {}", restaurant, userId);
+        service.update(restaurant, userId);
     }
 }

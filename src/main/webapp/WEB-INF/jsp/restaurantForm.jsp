@@ -11,16 +11,19 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <jsp:include page="fragments/bodyHeader.jsp"/>
+<jsp:useBean id="restaurant" class="den.graduation.model.Restaurant" scope="request"/>
 <div class="jumbotron pt-4">
     <div class="container">
         <div class="row">
             <div class="col-5 offset-3">
                 <a class="col-form-label">
                     <h3>${restaurant.isNew() ? 'Добавить ресторан' : 'Изменение данных о ресторане'}</h3>
+                    <h3>${restaurant.id} текст</h3>
                 </a>
                 <hr>
-                <form name="myForm" method="post" action="/restaurants" onsubmit="return validateForm()">
+                <form name="myForm" method="post" action="restaurants" onsubmit="return validateForm()">
                     <input type="hidden" name="id" value="${restaurant.id}">
                     <dl>
                         <div class="form-group">

@@ -18,6 +18,7 @@
 <section>
     <div class="container">
         <c:forEach items="${restaurants}" var="restaurant">
+            <jsp:useBean id="restaurant" scope="request" class="den.graduation.model.Restaurant"/>
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
                     <h4 class="my-0 font-weight-normal">${restaurant.name}</h4>

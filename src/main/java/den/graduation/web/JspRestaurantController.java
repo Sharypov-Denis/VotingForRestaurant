@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping(value = "/restaurants")
-public class JspRestaurantController extends RestaurantRestController {
+public class JspRestaurantController extends AbstractRestaurantController {
 
     @Autowired
     private UserService userService;
@@ -47,41 +48,51 @@ public class JspRestaurantController extends RestaurantRestController {
 
     @GetMapping("/delete")
     public String delete(HttpServletRequest request) {
-        super.delete(getId(request));
+        //super.delete(getId(request));
+        System.out.println("проверка id пользователя " + SecurityUtil.authUserId());
+        System.out.println("проверка id ресторана " + getId(request));
+        restaurantService.delete(getId(request), SecurityUtil.authUserId());
         //exerciseRestController.delete(getId(request));
         return "redirect:/restaurants";
     }
 
     @GetMapping("/update")
     public String update(HttpServletRequest request, Model model) {
-        model.addAttribute("restaurant", super.get(getId(request)));
-        //model.addAttribute("exercise", exerciseRestController.get(getId(request)));
+       // model.addAttribute("restaurant", super.get(getId(request)));
+        model.addAttribute("restaurant", restaurantService.getOne(getId(request)));
+        System.out.println("проверка входящего ID для функции update:" + getId(request));
+        System.out.println("Проверка, приходит ли объект: " + restaurantService.getOne(getId(request)));
         return "restaurantForm";
     }
 
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("restaurant", new Restaurant("", 0));
-        // model.addAttribute("menu", new Menu("",  0));
         model.addAttribute("register", true);
         return "restaurantForm";
     }
 
-
-        @PostMapping
-        public String updateOrCreate(HttpServletRequest request) {
-            Restaurant restaurant = new Restaurant(
-                    request.getParameter("name"),
-                    Integer.parseInt(request.getParameter("numberOfVotes")));
-
-            if (request.getParameter("id").isEmpty()) {
-                super.create(restaurant);
-            } else {
-                super.update(restaurant, getId(request));
-
-            }
-            return "redirect:/restaurants";
+    @PostMapping
+    public String updateOrCreate(@RequestParam(value = "id") Integer id, HttpServletRequest request) {
+      Restaurant restaurant = new Restaurant(
+                request.getParameter("name"),
+                Integer.parseInt(request.getParameter("numberOfVotes")));
+        System.out.println("ПРОВЕРКА" + id);
+/*
+        if (id == null || id == 0) {
+            super.create(restaurant);
+        } else {
+            System.out.println("проверка ID для функции update метода пост:");
+            super.update(restaurant, id);
         }
+
+ */     restaurant.setId(id);
+        restaurantService.update(restaurant, SecurityUtil.authUserId());
+
+
+        return "redirect:/restaurants";
+    }
+
 
     private int getId(HttpServletRequest request) {
         String paramId = Objects.requireNonNull(request.getParameter("id"));
@@ -95,8 +106,6 @@ public class JspRestaurantController extends RestaurantRestController {
         int userId = SecurityUtil.authUserId();
         List<Voting> list = votingService.getAllByUser(userId);
         System.out.println(list);
-
-
         if (list != null && DataUtil.UpdateVoting(list) == true) {
             System.out.println("вы уже проголосовали, но возможно можете проголосовать еще - проверяем");
             if (DataUtil.newVoting(list) == true) {

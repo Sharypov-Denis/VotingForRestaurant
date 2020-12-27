@@ -47,9 +47,11 @@
                         Проголосовать за ресторан</a>
                     <sec:authorize access="hasRole('ADMIN')">
                         <td><a class="btn btn-lg btn-block btn-primary"
-                               href="restaurants/delete?id=${restaurant.id}">Удалить ресторан</a></td>
-                        <td><a class="btn btn-lg btn-block btn-primary"
-                               href="restaurants/update?id=${restaurant.id}">Редактировать ресторан</a></td>
+                              <%-- href="restaurants/delete?id=${restaurant.id}">Удалить ресторан</a></td>--%>
+                               href="restaurants/sorry">Удалить ресторан</a></td>
+                         <td><a class="btn btn-lg btn-block btn-primary"
+                             <%--  href="restaurants/update?id=${restaurant.id}">Редактировать ресторан</a></td>--%>
+                               href="restaurants/sorry">Редактировать ресторан</a></td>
                     </sec:authorize>
                     <sec:authorize access="hasRole('ADMIN')">
                         <a class="btn btn-lg btn-block btn-primary" href="/menu/createMenu?id=${restaurant.id}">

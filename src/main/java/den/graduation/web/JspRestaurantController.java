@@ -46,6 +46,11 @@ public class JspRestaurantController extends AbstractRestaurantController {
 
      */
 
+    @GetMapping("/sorry")
+    public String sorry() {
+        return "sorry";
+    }
+
     @GetMapping("/delete")
     public String delete(HttpServletRequest request) {
         //super.delete(getId(request));

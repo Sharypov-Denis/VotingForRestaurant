@@ -17,7 +17,7 @@
             Войти как User
         </button>
         <button type="submit" class="btn btn-lg btn-primary" onclick="login('admin@gmail.com', 'admin')">
-            Войти как Admin
+            Войти как Admin(для тестирования: curl -s http://localhost:8080/admin/rest/users --user admin@gmail.com:admin)
         </button>
     </div>
 </sec:authorize>

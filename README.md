@@ -13,6 +13,5 @@
 Технологии и инструменты, используемые в проекте:
  Maven, Spring Security, Spring MVC, Spring Data JPA, Hibernate ORM, REST(Jackson), JSP, PostgreSQL, HSQLDB, Bootstrap(CSS).
 - хранение данных реализовано в HSQLDB
-- контейнер сервлетов Apache Tomcat
-- регистрация/авторизация и правама доступа на основе ролей (USER, ADMIN)
+- регистрация/авторизация и права доступа на основе ролей (USER, ADMIN)
 - деплой в контейнер сервлетов Tomcat, в облачный сервис Heroku

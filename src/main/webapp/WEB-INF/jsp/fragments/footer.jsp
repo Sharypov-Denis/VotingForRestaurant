@@ -5,6 +5,6 @@
 
 <footer class="footer">
     <div class="container">
-        <span class="text-muted">Выпускной проект Шарыпова Д.А.(Проект постоянно дорабатывает и проводится рефакторинг кода</span>
+        <span class="text-muted">Выпускной проект Шарыпова Д.А.(Проект в разработке)</span>
     </div>
 </footer>

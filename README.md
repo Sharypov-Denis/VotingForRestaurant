@@ -14,4 +14,9 @@
  Maven, Spring Security, Spring MVC, Spring Data JPA, Hibernate ORM, REST(Jackson), JSP, PostgreSQL, HSQLDB, Bootstrap(CSS).
 - хранение данных реализовано в HSQLDB
 - регистрация/авторизация и права доступа на основе ролей (USER, ADMIN)
-- деплой в контейнер сервлетов Tomcat, в облачный сервис Heroku
+- деплой в контейнер сервлетов Tomcat, в облачный сервис Heroku.
+
+Планируемые доработки:
+- Кеширование данных с Spring Cache/Hibernate cache
+- Локализация
+- Перевод проекта на Spring Boot(отдельный проект)

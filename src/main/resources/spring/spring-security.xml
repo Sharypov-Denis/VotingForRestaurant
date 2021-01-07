@@ -7,12 +7,21 @@
     <http pattern="/resources/**" security="none"/>
     <http pattern="/webjars/**" security="none"/>
 
-    <http pattern="/admin/**" use-expressions="true" name="restSecurityFilterChain" create-session="stateless">
+    <http pattern="/admin/**" use-expressions="true" name="SecurityFilterChain" create-session="stateless">
         <http-basic/>
         <intercept-url pattern="/admin/users/**" access="hasRole('ADMIN')"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
         <csrf disabled="true"/>
     </http>
+
+    <http pattern="/rest/**" use-expressions="true" name="restSecurityFilterChain" create-session="stateless">
+        <http-basic/>
+        <intercept-url pattern="/rest/admin/**" access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/rest/users/**" access="permitAll()"/>
+        <intercept-url pattern="/rest/restaurants/**" access="permitAll()"/>
+        <csrf disabled="true"/>
+    </http>
+
 
     <beans:bean name="noopEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
 

@@ -13,17 +13,11 @@ import java.util.List;
 public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Integer> {
     @Modifying
     @Transactional
-    @Query("DELETE FROM Restaurant ex WHERE ex.id=:id AND ex.user.id=:userId")
-    int delete(@Param("id") int id, @Param("userId") int userId);
+    @Query("DELETE FROM Restaurant ex WHERE ex.id=:id")
+    int delete(@Param("id") int id);
 
-    @Query("SELECT ex FROM Restaurant ex WHERE ex.user.id=:userId")
-    List<Restaurant> getAll(@Param("userId") int userId);
-
-    @Query("SELECT ex FROM Restaurant ex JOIN FETCH ex.user WHERE ex.id = ?1 and ex.user.id = ?2")
-    Restaurant getWithUser(int id, int userId);
-
-    @Query("SELECT ex FROM Restaurant ex")
-    List<Restaurant> getAllRestaurants();
+    @Query("SELECT r FROM Restaurant r")
+    List<Restaurant> getAll();
 
     @Modifying
     @Transactional
@@ -32,4 +26,7 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
 
     @Query("SELECT ex FROM Restaurant ex WHERE ex.id=:id")
     Restaurant getOne(int id);
+
+    @Query("SELECT ex FROM Restaurant ex WHERE ex.id=:id")
+    Restaurant get(int id);
 }

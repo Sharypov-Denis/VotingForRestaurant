@@ -1,18 +1,16 @@
 package den.graduation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @NamedQueries({
-        @NamedQuery(name = Restaurant.ALL_SORTED, query = "SELECT m FROM Restaurant m WHERE m.user.id=:userId"),
-        @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant m WHERE m.id=:id AND m.user.id=:userId"),
+        @NamedQuery(name = Restaurant.ALL_SORTED, query = "SELECT r FROM Restaurant r"),
+        @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant m WHERE m.id=:id"),
 })
 
 @Entity
@@ -36,18 +34,12 @@ public class Restaurant {
     @Size(min = 2, max = 120)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    @NotNull
-    private User user;
-
     @Column(name = "numberOfVotes", nullable = false)
-    //@NotBlank
-    //@Size(min = 2, max = 120)
+
     private int numberOfVotes;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "restaurant")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    // @OrderBy("exerciseDateTime DESC")
+    @JsonIgnore
     public List<Menu> menus;
 
     public Restaurant() {
@@ -55,6 +47,10 @@ public class Restaurant {
 
     public Restaurant(Integer id) {
         this.id = id;
+    }
+
+    public Restaurant(Restaurant restaurant) {
+        this(restaurant.getId(), restaurant.name, restaurant.numberOfVotes);
     }
 
     public Restaurant(String name, int numberOfVotes) {
@@ -104,7 +100,7 @@ public class Restaurant {
         return "Restaurant{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", user=" + user +
+                ", user=" + //user +
                 ", menu=" + menus +
                 '}';
     }
@@ -113,28 +109,16 @@ public class Restaurant {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Restaurant that = (Restaurant) o;
-
-        if (!Objects.equals(id, that.id)) return false;
-        if (!Objects.equals(name, that.name)) return false;
-        return Objects.equals(user, that.user);
+        return numberOfVotes == that.numberOfVotes &&
+                id.equals(that.id) &&
+                name.equals(that.name) &&
+                Objects.equals(menus, that.menus);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (user != null ? user.hashCode() : 0);
-        return result;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+        return Objects.hash(id, name, numberOfVotes, menus);
     }
 
     public boolean isNew() {

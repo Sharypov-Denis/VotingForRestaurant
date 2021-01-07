@@ -1,7 +1,6 @@
 package den.graduation.repository.datajpa;
 
 import den.graduation.model.Menu;
-import den.graduation.model.Restaurant;
 import den.graduation.repository.MenuRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +26,7 @@ public class DataJPAMenuRepository implements MenuRepository {
         }
 
         */
-       // menu.setRestaurant(crudRestaurantRepository.getOne(restaurantId));
+        //menu.setRestaurant(crudRestaurantRepository.getOne(restaurantId));
         return crudMenuRepository.save(menu);
 
     }
@@ -49,9 +48,8 @@ public class DataJPAMenuRepository implements MenuRepository {
         return crudMenuRepository.getAll(restaurantId);
     }
 
-    @Override
-    public Menu getWithRestaurant(int id, int restaurantId) {
-        return crudMenuRepository.getWithRestaurant(id, restaurantId);
+    public Menu getWithRestaurant(int restaurantId) {
+        return crudMenuRepository.getWithRestaurant(restaurantId);
     }
 
     public List<Menu> getAllMenu() {

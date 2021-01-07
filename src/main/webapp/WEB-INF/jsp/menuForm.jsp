@@ -32,6 +32,13 @@
                                    required>
                         </div>
                     </dl>
+
+                    <dl>
+                        <div class="form-group">
+                            <input type="datetime-local" class="form-control" id="date" name="date" placeholder="Дата меню"
+                                   required>
+                        </div>
+                    </dl>
                     <button type="submit">Save</button>
                     <button onclick="window.history.back()" type="button">Cancel</button>
                     </dl>

@@ -17,6 +17,7 @@
 </sec:authorize>
 <section>
     <div class="container">
+        <a class="btn btn-lg btn-outline-primary hero__btn"><span>${status}</span></a>
         <c:forEach items="${restaurants}" var="restaurant">
             <jsp:useBean id="restaurant" scope="request" class="den.graduation.model.Restaurant"/>
             <div class="card mb-4 box-shadow">
@@ -25,15 +26,18 @@
                 </div>
                 <div class="card-body">
                     <ul class="list-unstyled mt-3 mb-4">
-                        <li>Количество голосов на ${time} <a
+                        <li>Количество голосов на ${time}: <a
                                 class="btn btn-lg btn-outline-primary hero__btn"><span>${restaurant.numberOfVotes}</span></a>
                         </li>
+
                         <li>
                             <c:forEach var="num" items="${restaurant.menus}">
                                 <tr>
                                     <br>
+                                    <th>Дата меню: ${num.dateTime.toLocalDate()},</th>
                                     <th>Блюдо: ${num.name},</th>
                                     <th>Цена: ${num.price} руб.</th>
+
                                 </tr>
                                 <tr>
                                     <sec:authorize access="hasRole('ADMIN')">
@@ -44,24 +48,24 @@
                         </li>
                     </ul>
                     <a class="btn btn-lg btn-warning" href="restaurants/voting?id=${restaurant.id}">
-                        Проголосовать за ресторан</a>
+                        Хочу обедать в этом ресторане(Проголосовать)</a>
                     <sec:authorize access="hasRole('ADMIN')">
                         <td><a class="btn btn-lg btn-block btn-primary"
-                              <%-- href="restaurants/delete?id=${restaurant.id}">Удалить ресторан</a></td>--%>
-                               href="restaurants/sorry">Удалить ресторан</a></td>
-                         <td><a class="btn btn-lg btn-block btn-primary"
-                             <%--  href="restaurants/update?id=${restaurant.id}">Редактировать ресторан</a></td>--%>
-                               href="restaurants/sorry">Редактировать ресторан</a></td>
-                    </sec:authorize>
-                    <sec:authorize access="hasRole('ADMIN')">
-                        <a class="btn btn-lg btn-block btn-primary" href="/menu/createMenu?id=${restaurant.id}">
-                            <span class="fa fa-plus"></span>
-                            Добавить меню</a>
-                    </sec:authorize>
-                </div>
+                              href="restaurants/delete?id=${restaurant.id}">Удалить ресторан</a></td>
+                        <%--  href="restaurants/sorry">Удалить ресторан</a></td>--%>
+                   <td><a class="btn btn-lg btn-block btn-primary"
+                        href="restaurants/update?id=${restaurant.id}">Редактировать ресторан</a></td>
+                        <%--    href="restaurants/sorry">Редактировать ресторан</a></td>--%>
+                </sec:authorize>
+                <sec:authorize access="hasRole('ADMIN')">
+                    <a class="btn btn-lg btn-block btn-primary" href="/menu/createMenu?id=${restaurant.id}">
+                        <span class="fa fa-plus"></span>
+                        Добавить меню</a>
+                </sec:authorize>
             </div>
-        </c:forEach>
-    </div>
+        </div>
+    </c:forEach>
+</div>
 
 </section>
 <jsp:include page="fragments/footer.jsp"/>

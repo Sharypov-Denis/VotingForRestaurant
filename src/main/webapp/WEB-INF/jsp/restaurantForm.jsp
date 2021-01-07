@@ -20,7 +20,6 @@
             <div class="col-5 offset-3">
                 <a class="col-form-label">
                     <h3>${restaurant.isNew() ? 'Добавить ресторан' : 'Изменение данных о ресторане'}</h3>
-                    <h3>${restaurant.id} текст</h3>
                 </a>
                 <hr>
                 <form name="myForm" method="post" action="restaurants" onsubmit="return validateForm()">

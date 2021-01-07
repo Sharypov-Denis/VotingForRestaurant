@@ -21,41 +21,34 @@ public class DataJPARestaurantRepository implements RestaurantRepository {
 
     @Override
     @Transactional
-    public Restaurant save(Restaurant restaurant, int userId) {
-        if (!restaurant.isNew() && get(restaurant.getId(), userId) == null) {
+    public Restaurant save(Restaurant restaurant) {
+        if (!restaurant.isNew() && get(restaurant.getId()) == null) {
             return null;
         }
-
-        restaurant.setUser(crudUserRepository.getOne(userId));
+        //restaurant.setUser(crudUserRepository.getOne(userId));
         return crudRestaurantRepository.save(restaurant);
     }
 
     @Override
-    public boolean delete(int id, int userId) {
-        return crudRestaurantRepository.delete(id, userId) != 0;
+    public boolean delete(int id) {
+        return crudRestaurantRepository.delete(id) != 0;
     }
 
     @Override
-    public Restaurant get(int id, int userId) {
+    public Restaurant get(int id) {
         return crudRestaurantRepository.findById(id)
-                .filter(exercise -> exercise.getUser().getId() == userId)
                 .orElse(null);
     }
 
     @Override
-    public List<Restaurant> getAll(int userId) {
-        return crudRestaurantRepository.getAll(userId);
-    }
-
-    @Override
-    public Restaurant getWithUser(int id, int userId) {
-        return crudRestaurantRepository.getWithUser(id, userId);
+    public List<Restaurant> getAll() {
+        return crudRestaurantRepository.getAll();
     }
 
     @Override
     public List<Restaurant> getAllRestaurants()
     {
-        return crudRestaurantRepository.getAllRestaurants();
+        return crudRestaurantRepository.findAll();
     }
 
     public void updateById(int id) {

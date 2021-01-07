@@ -5,9 +5,7 @@
 
 <footer class="footer">
     <div class="container">
-        <span class="text-muted">Выпускной проект Шарыпова Д.А.(Проект в разработке).</span>
-        <br>
-        <span class="text-muted">Для тестирования: curl -s http://localhost:8080/admin/rest/users --user admin@gmail.com:admin</span>
+        <span class="text-muted">Проект Шарыпова Д.А.(Проект в разработке).</span>
         <br>
         <span class="text-muted">Администратор:user=admin@gmail.com, password = admin</span>
     </div>

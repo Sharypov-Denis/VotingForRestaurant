@@ -1,5 +1,6 @@
 package den.graduation.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Proxy;
 import org.springframework.util.Assert;
@@ -31,7 +32,6 @@ public class User {
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-
     private Integer id;
 
     @Column(name = "email", nullable = false, unique = true)
@@ -48,6 +48,7 @@ public class User {
     @Column(name = "password", nullable = false)
     @NotBlank
     @Size(min = 5, max = 100)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)//add
     private String password;
 
     @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
@@ -63,9 +64,6 @@ public class User {
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
-    public List<Restaurant> restaurants;
 
     public User() {
     }
@@ -83,7 +81,6 @@ public class User {
     }
 
     public User(Integer id, String name, String email, String password, boolean enabled, Date registered, Collection<Role> roles) {
-        //super(id, name);
         this.id = id;
         this.name = name;
         this.email = email;
@@ -95,14 +92,6 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public List<Restaurant> getRestaurants() {
-        return restaurants;
-    }
-
-    public void setRestaurants(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
     }
 
     public String getEmail() {

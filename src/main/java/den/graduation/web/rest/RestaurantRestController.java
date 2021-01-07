@@ -17,11 +17,21 @@ import java.util.List;
 @RestController
 @RequestMapping(value = RestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestaurantRestController extends AbstractRestaurantController {
-    static final String REST_URL = "/rest/profile/restaurants";
-    //curl -s http://localhost:8080/rest/profile/restaurants --user user@yandex.ru:password
-
+    static final String REST_URL = "/rest/restaurants";
+    //РАБОТАЮТ ЗАПРОСЫ КРОМЕ КРЕАТЕ
+    // get All Restaurants "curl -s http://localhost:8080/rest/restaurants --user user@yandex.ru:password"
+    // get Restaurants 100002 "curl -s http://localhost:8080/rest/restaurants/100002 --user admin@gmail.com:admin"
+    // delete Restaurant 100001 "curl -s -X DELETE http://localhost:8080/rest/restaurants/delete/100001 --user admin@gmail.com:admin"
+    // create Restaurant "curl -s -X POST -d '{"name":"Новый ресторан","numberOfVotes":10}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/restaurants/create --user admin@gmail.com:admin"
+    //                    curl -s -i -X POST -d '{"name":"Новый ресторан","numberOfVotes":10}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/restaurants/create
+    //                    curl -s -i -X POST -d '{"name":"Новый ресторан","numberOfVotes":10}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/restaurants/create --user admin@gmail.com:admin
     @Autowired
     private RestaurantService service;
+
+    @GetMapping
+    public List<Restaurant> getAllRestaurants() {
+        return super.getAllRestaurants();
+    }
 
     @Override
     @GetMapping("/{id}")
@@ -30,33 +40,27 @@ public class RestaurantRestController extends AbstractRestaurantController {
     }
 
     @Override
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
         super.delete(id);
     }
 
-    @GetMapping
-    public List<Restaurant> getAll() {
-        return service.getAllRestaurants();
-        //return super.getAll();
-    }
-
     @Override
-    @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void update(@RequestBody Restaurant restaurant, @PathVariable int id) {
         super.update(restaurant, id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant restaurant) {
-        Restaurant created = super.create(restaurant);
-
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant r) {
+        Restaurant restaurant = super.create(r);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
-                .buildAndExpand(created.getId()).toUri();
+                .buildAndExpand(r.getId()).toUri();
 
-        return ResponseEntity.created(uriOfNewResource).body(created);
+        return ResponseEntity.created(uriOfNewResource).body(restaurant);
     }
+
 }

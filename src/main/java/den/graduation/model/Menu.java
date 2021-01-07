@@ -3,9 +3,9 @@ package den.graduation.model;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "menu")
@@ -33,21 +33,26 @@ public class Menu {
     @NotNull
     private Restaurant restaurant;
 
+    @Column(name = "date_menu", nullable = false, columnDefinition = "timestamp default now()")
+    @NotNull
+    private LocalDateTime dateTime;
+
     public Menu() {
     }
 
-    public Menu(String name, int price) {
-        this(null, name, price);
+    public Menu(String name, int price, LocalDateTime dateTime) {
+        this(null, name, price, dateTime);
     }
 
     public Menu(Integer id) {
         this.id = id;
     }
 
-    public Menu(Integer id, String name, int price) {
+    public Menu(Integer id, String name, int price, LocalDateTime dateTime) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.dateTime = dateTime;
     }
 
     public Integer getId() {
@@ -86,10 +91,18 @@ public class Menu {
         return this.id == null;
     }
 
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
     @Override
     public String toString() {
         return "Наименование блюда: " + name +
-                "Цена: " + price + " руб." + "";
+                "Цена: " + price + " руб." + "" + "Дата: " + dateTime;
     }
 
 }

@@ -1,4 +1,4 @@
-package den.graduation.web;
+package den.graduation.web.mvc;
 
 
 import den.graduation.model.Menu;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 
@@ -49,7 +50,7 @@ public class JspMenuController {
     @GetMapping("/createMenu")
     public String create(Model model, HttpServletRequest request) {
         //model.addAttribute("restaurant", new Restaurant("", "", 0));
-        model.addAttribute("menu", new Menu("", 0));
+        model.addAttribute("menu", new Menu("", 0, null));
         restaurantId = getId(request);
         return "menuForm";
     }
@@ -59,7 +60,9 @@ public class JspMenuController {
     public String updateOrCreate(HttpServletRequest request) {
         Menu menu = new Menu(
                 request.getParameter("newMenu"),
-                Integer.parseInt(request.getParameter("price")));
+                Integer.parseInt(request.getParameter("price")),
+                LocalDateTime.parse(request.getParameter("date")));
+
         Restaurant restaurant = restaurantService.getOne(restaurantId);
         menu.setRestaurant(restaurant);
 

@@ -30,11 +30,9 @@ CREATE TABLE user_roles
 CREATE TABLE restaurant
 (
     id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    user_id       INTEGER NOT NULL,
     name          TEXT    NOT NULL,
-    numberOfVotes INT     NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
-);
+    numberOfVotes INT     NOT NULL
+    );
 
 CREATE TABLE menu
 (

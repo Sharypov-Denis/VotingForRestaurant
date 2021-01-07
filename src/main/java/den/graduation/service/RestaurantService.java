@@ -17,26 +17,26 @@ public class RestaurantService {
         this.repository = repository;
     }
 
-    public Restaurant get(int id, int userId) {
-        return repository.get(id, userId);
+    public Restaurant get(int id) {
+        return repository.get(id);
     }
 
-    public void delete(int id, int userId) {
-        repository.delete(id, userId);
+    public void delete(int id) {
+        repository.delete(id);
     }
 
-    public List<Restaurant> getAll(int userId) {
-        return repository.getAll(userId);
+    public List<Restaurant> getAll() {
+        return repository.getAll();
     }
 
-    public void update(Restaurant restaurant, int userId) {
+    public void update(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
-        repository.save(restaurant, userId);
+        repository.save(restaurant);
     }
 
-    public Restaurant create(Restaurant restaurant, int userId) {
+    public Restaurant create(Restaurant restaurant) {
         Assert.notNull(restaurant, "restaurant must not be null");
-        return repository.save(restaurant, userId);
+        return repository.save(restaurant);
     }
 
     public List<Restaurant> getAllRestaurants() {
@@ -47,7 +47,6 @@ public class RestaurantService {
     public void updateById(int id) {
         repository.updateById(id);
     }
-
 
     public Restaurant getOne(int id) {
         return repository.getOne(id);

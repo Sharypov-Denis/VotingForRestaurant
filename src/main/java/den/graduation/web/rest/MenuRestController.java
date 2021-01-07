@@ -15,28 +15,36 @@ import java.util.List;
 @RestController
 @RequestMapping(value = MenuRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class MenuRestController {
-    static final String REST_URL = "/rest/profile/menu";
+    // get All menu "curl -s http://localhost:8080/rest/menu --user user@yandex.ru:password"
+    // get MenuForRestaurant 100001 and MENU 10001 "curl -s http://localhost:8080/rest/menu/10001/100001 --user admin@gmail.com:admin"
+    // get MenuForRestaurant 100001 "curl -s http://localhost:8080/rest/menu/getAll/100001 --user admin@gmail.com:admin"
+    static final String REST_URL = "/rest/menu";
 
     @Autowired
     private MenuService menuService;
 
-    @GetMapping("/{id}/{rid}")
-    public Menu get(@PathVariable int id, @PathVariable int rid) {
-        return menuService.get(id, rid);
+    @GetMapping("/{id}/{idr}")
+    public Menu get(@PathVariable int id, @PathVariable int idr) {
+        return menuService.get(id, idr);
     }
 
-  //  @GetMapping("/{id}")
-    public List<Menu> getAll() {
+    @GetMapping("/getAll/{idr}")
+    public List<Menu> getMenuForRestaurant(@PathVariable int idr) {
+        return menuService.getAll(idr);
+    }
+
+    @GetMapping
+    public List<Menu> getAllMenu() {
         return menuService.getAllMenu();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
         menuService.delete(id);
     }
 
-    @PostMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/create/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Menu> createWithLocation(@RequestBody Menu menu, @PathVariable int id) {
         Menu created = menuService.create(menu, id);
 

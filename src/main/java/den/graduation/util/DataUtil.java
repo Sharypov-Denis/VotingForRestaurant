@@ -38,7 +38,8 @@ public class DataUtil {
 
     }
 
-    public static boolean newVoting(List<Voting> votings) {
+    public static boolean isVoting(List<Voting> votingList) {
+        boolean isVoting = true;
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
         String str = format.format(new Date());
         Date date = null;
@@ -48,25 +49,19 @@ public class DataUtil {
             System.out.println(ex.getMessage());
         }
 
-        System.out.println("Дата сегодня: " + date);
         LocalDate localDateNow = convertToLocalDateViaInstant(date);
-        LocalDateTime localDateTime = localDateNow.atTime(11,00);
-        System.out.println("Дата сегодня + 11 часов: " + localDateTime);
+        LocalDateTime localDateTime = localDateNow.atTime(11, 00);
 
-        boolean isNew = false;
-        for (int i = 0; i < votings.size(); i++) {
-            System.out.println("Дата голоса: " + votings.get(i).getRegistered());
-            System.out.println("Дата сегодня: " + date);
-            System.out.println("Дата голоса в LOCALDATE: " + convertToLocalDateViaInstant(votings.get(i).getRegistered()));
-            if (convertToLocalDateTimeViaInstant(votings.get(i).getRegistered()).isAfter(localDateTime)){
-                System.out.println("вы уже голосовали и проголосовать не сможете");
-                isNew = true;
+        for (int i = 0; i < votingList.size(); i++) {
+            if (convertToLocalDateTimeViaInstant(votingList.get(i).getRegistered()).isAfter(localDateTime)) {
+                isVoting = false;//"вы уже голосовали и проголосовать не сможете"
             }
         }
-        return isNew;
+        return isVoting;
     }
 
-    public static boolean UpdateVoting(List<Voting> votings) {
+    public static boolean UpdateVoting(List<Voting> votingList) {
+        boolean isNew = false;
         SimpleDateFormat format = new SimpleDateFormat("yyyy.MM.dd");
         String str = format.format(new Date());
         Date date = null;
@@ -77,24 +72,17 @@ public class DataUtil {
             System.out.println(ex.getMessage());
         }
 
-        System.out.println("Дата сегодня: " + date);
-        LocalDate localDateNow = convertToLocalDateViaInstant(date);
-        LocalDateTime localDateTime = localDateNow.atTime(11,00);
-        System.out.println("Дата сегодня + 11 часов: " + localDateTime);
+       // LocalDate localDateNow = convertToLocalDateViaInstant(date);
+       // LocalDateTime localDateTime = localDateNow.atTime(11, 00);
 
-        boolean isNew = false;
-        for (int i = 0; i < votings.size(); i++) {
-            System.out.println("Дата голоса: " + votings.get(i).getRegistered());
-            System.out.println("Дата сегодня: " + date);
-            System.out.println("Дата голоса в LOCALDATE: " + convertToLocalDateViaInstant(votings.get(i).getRegistered()));
-            if (convertToLocalDateTimeViaInstant(votings.get(i).getRegistered()).isAfter(convertToLocalDateTimeViaInstant(date))){
-                System.out.println("вы уже проголосовали, но все равно можете проголосовать еще");
-                    isNew = true;
+
+        for (int i = 0; i < votingList.size(); i++) {
+            if (convertToLocalDateTimeViaInstant(votingList.get(i).getRegistered()).isAfter(convertToLocalDateTimeViaInstant(date))) {
+                isNew = true;//"вы уже проголосовали, но все равно можете проголосовать еще"
             }
         }
         return isNew;
     }
-
 
     public static LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
         return dateToConvert.toInstant()

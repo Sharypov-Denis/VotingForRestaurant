@@ -6,7 +6,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark py-0">
     <div class="container">
-        <a href="restaurants" class="navbar-brand">Выпускной проект "Голосование за ресторан"</a>
+        <a href="restaurants" class="navbar-brand">Проект "Голосование за ресторан"</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

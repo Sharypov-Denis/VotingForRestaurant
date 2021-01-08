@@ -3,9 +3,11 @@ package den.graduation.web.mvc;
 
 import den.graduation.model.Menu;
 import den.graduation.model.Restaurant;
-import den.graduation.service.MenuService;
-import den.graduation.service.RestaurantService;
-import den.graduation.service.UserService;
+import den.graduation.MenuService;
+import den.graduation.RestaurantService;
+import den.graduation.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,7 @@ import java.util.Objects;
 @Controller
 @RequestMapping(value = "/menu")
 public class JspMenuController {
+    private static final Logger log = LoggerFactory.getLogger(JspMenuController.class);
 
     @Autowired
     private UserService userService;
@@ -35,6 +38,7 @@ public class JspMenuController {
     public String delete(HttpServletRequest request) {
         menuService.delete(getId(request));
         //exerciseRestController.delete(getId(request));
+        log.info("delete menu {}", getId(request));
         return "redirect:/restaurants";
     }
 
@@ -52,6 +56,7 @@ public class JspMenuController {
         //model.addAttribute("restaurant", new Restaurant("", "", 0));
         model.addAttribute("menu", new Menu("", 0, null));
         restaurantId = getId(request);
+
         return "menuForm";
     }
 
@@ -67,7 +72,7 @@ public class JspMenuController {
         menu.setRestaurant(restaurant);
 
         menuService.create(menu, restaurantId);
-
+        log.info("updateOrCreate menu");
         return "redirect:/restaurants";
     }
 

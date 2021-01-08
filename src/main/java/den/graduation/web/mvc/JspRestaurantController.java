@@ -3,13 +3,16 @@ package den.graduation.web.mvc;
 import den.graduation.SecurityUtil;
 import den.graduation.model.Restaurant;
 import den.graduation.model.Voting;
-import den.graduation.service.MenuService;
-import den.graduation.service.RestaurantService;
-import den.graduation.service.UserService;
-import den.graduation.service.VotingService;
+import den.graduation.MenuService;
+import den.graduation.RestaurantService;
+import den.graduation.UserService;
+import den.graduation.VotingService;
 import den.graduation.util.DataUtil;
 import den.graduation.util.UserValidator;
+import den.graduation.util.VotingUtil;
 import den.graduation.web.AbstractRestaurantController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +28,7 @@ import java.util.Objects;
 @Controller
 @RequestMapping(value = "/restaurants")
 public class JspRestaurantController extends AbstractRestaurantController {
+    private static final Logger log = LoggerFactory.getLogger(JspRestaurantController.class);
 
     @Autowired
     private UserService userService;
@@ -40,6 +44,18 @@ public class JspRestaurantController extends AbstractRestaurantController {
 
     @Autowired
     private UserValidator validatorRest;
+
+    @GetMapping
+    public String getRestaurant(Model model) {
+        List<Voting> list = votingService.getAllByUser(SecurityUtil.authUserId());
+        String vote = VotingUtil.createOrUpdateVoting(list);
+
+        model.addAttribute("restaurants", restaurantService.getAllRestaurants());
+        model.addAttribute("time", DataUtil.getDateNow());
+        model.addAttribute("status", vote);
+        log.info("get all restaurants");
+        return "restaurants";
+    }
 
     @GetMapping("/sorry")
     public String sorry() {
@@ -87,7 +103,7 @@ public class JspRestaurantController extends AbstractRestaurantController {
  */
         restaurant.setId(id);
         restaurantService.update(restaurant);
-
+        log.info("updateOrCreate restaurant {}", id);
         return "redirect:/restaurants";
     }
 
@@ -108,6 +124,7 @@ public class JspRestaurantController extends AbstractRestaurantController {
             votingService.create(voting, getId(request), SecurityUtil.authUserId());
             restaurantService.updateById(getId(request));
         }
+        log.info("updateOrCreateVoting restaurant{}", getId(request));
         return "redirect:/restaurants";
     }
 

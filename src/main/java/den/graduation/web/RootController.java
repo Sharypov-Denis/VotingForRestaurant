@@ -1,11 +1,10 @@
 package den.graduation.web;
 
 import den.graduation.SecurityUtil;
-import den.graduation.service.MenuService;
-import den.graduation.service.RestaurantService;
-import den.graduation.service.UserService;
-import den.graduation.service.VotingService;
-import den.graduation.util.DataUtil;
+import den.graduation.MenuService;
+import den.graduation.RestaurantService;
+import den.graduation.UserService;
+import den.graduation.VotingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +26,7 @@ public class RootController {
     private MenuService menuService;
 
     @Autowired
-    private static VotingService votingService;
+    private VotingService votingService;
 
     @GetMapping("/")
     public String root() {
@@ -52,15 +51,26 @@ public class RootController {
         SecurityUtil.authUserId();
         return "redirect:restaurants";
     }
+/*
+    @PostMapping("/users")
+    public String setUser(HttpServletRequest request) {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        SecurityUtil.authUserId();
+        return "redirect:restaurants";
+    }
 
     @GetMapping("/restaurants")
     public String getRestaurant(Model model, HttpServletRequest request) {
-        //String vote;
-        model.addAttribute("restaurants",
-                restaurantService.getAllRestaurants());
+        List<Voting> list = votingService.getAllByUser(SecurityUtil.authUserId());
+        String vote = VotingUtil.createOrUpdateVoting(list);
+
+        model.addAttribute("restaurants", restaurantService.getAllRestaurants());
         model.addAttribute("time", DataUtil.getDateNow());
-       // model.addAttribute("status", vote);
+        model.addAttribute("status", vote);
+
         return "restaurants";
     }
+
+ */
 
 }

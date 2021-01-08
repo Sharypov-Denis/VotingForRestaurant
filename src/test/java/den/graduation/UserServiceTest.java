@@ -1,10 +1,9 @@
-package den.graduation.service;
+package den.graduation;
 
 import den.graduation.model.Role;
 import den.graduation.model.User;
 import den.graduation.repository.UserRepository;
 import den.graduation.util.exception.NotFoundException;
-import org.hibernate.annotations.Proxy;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +15,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import static den.graduation.model.User.START_SEQ;
@@ -86,15 +83,13 @@ public class UserServiceTest {
 
     @Test
     public void getByEmail() throws Exception {
-        /*User user = service.getByEmail("testUser1@yandex.ru");
+        User user = service.getByEmail("testUser1@yandex.ru");
         assertEquals(user, USER3);
-
-         */
 
     }
 
 
-/*
+
     @Test
     public void delete() throws Exception {
         service.delete(USER3.getId());
@@ -136,5 +131,4 @@ public class UserServiceTest {
         assertMatch(all, ADMIN, USER);
     }
 
- */
 }

@@ -1,7 +1,7 @@
 package den.graduation.web;
 
 import den.graduation.model.User;
-import den.graduation.service.UserService;
+import den.graduation.UserService;
 import den.graduation.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

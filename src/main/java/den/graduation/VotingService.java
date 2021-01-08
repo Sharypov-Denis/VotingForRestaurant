@@ -1,4 +1,4 @@
-package den.graduation.service;
+package den.graduation;
 
 import den.graduation.model.Restaurant;
 import den.graduation.model.Voting;

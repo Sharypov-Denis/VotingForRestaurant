@@ -72,10 +72,6 @@ public class DataUtil {
             System.out.println(ex.getMessage());
         }
 
-       // LocalDate localDateNow = convertToLocalDateViaInstant(date);
-       // LocalDateTime localDateTime = localDateNow.atTime(11, 00);
-
-
         for (int i = 0; i < votingList.size(); i++) {
             if (convertToLocalDateTimeViaInstant(votingList.get(i).getRegistered()).isAfter(convertToLocalDateTimeViaInstant(date))) {
                 isNew = true;//"вы уже проголосовали, но все равно можете проголосовать еще"

@@ -1,11 +1,9 @@
-package den.graduation.service;
+package den.graduation;
 
-import den.graduation.AuthorizedUser;
 import den.graduation.model.User;
 import den.graduation.repository.UserRepository;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

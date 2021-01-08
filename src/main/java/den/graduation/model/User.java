@@ -90,6 +90,14 @@ public class User {
         setRoles(roles);
     }
 
+    public User(Integer id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        setRoles(roles);
+    }
+
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }

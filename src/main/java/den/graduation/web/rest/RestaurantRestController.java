@@ -2,7 +2,7 @@ package den.graduation.web.rest;
 
 
 import den.graduation.model.Restaurant;
-import den.graduation.service.RestaurantService;
+import den.graduation.RestaurantService;
 import den.graduation.web.AbstractRestaurantController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,8 +19,8 @@ import java.util.List;
 public class RestaurantRestController extends AbstractRestaurantController {
     static final String REST_URL = "/rest/restaurants";
     //РАБОТАЮТ ЗАПРОСЫ КРОМЕ КРЕАТЕ
-    // get All Restaurants "curl -s http://localhost:8080/rest/restaurants --user user@yandex.ru:password"
-    // get Restaurants 100002 "curl -s http://localhost:8080/rest/restaurants/100002 --user admin@gmail.com:admin"
+    // get All Restaurants "curl -s http://localhost:8080/rest/restaurants
+    // get Restaurants 100002 "curl -s http://localhost:8080/rest/restaurants/100002
     // delete Restaurant 100001 "curl -s -X DELETE http://localhost:8080/rest/restaurants/delete/100001 --user admin@gmail.com:admin"
     // create Restaurant "curl -s -X POST -d '{"name":"Новый ресторан","numberOfVotes":10}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/restaurants/create --user admin@gmail.com:admin"
     //                    curl -s -i -X POST -d '{"name":"Новый ресторан","numberOfVotes":10}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/restaurants/create

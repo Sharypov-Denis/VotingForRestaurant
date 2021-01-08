@@ -1,7 +1,7 @@
 package den.graduation.web.rest;
 
 import den.graduation.model.Menu;
-import den.graduation.service.MenuService;
+import den.graduation.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,9 +15,10 @@ import java.util.List;
 @RestController
 @RequestMapping(value = MenuRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class MenuRestController {
-    // get All menu "curl -s http://localhost:8080/rest/menu --user user@yandex.ru:password"
-    // get MenuForRestaurant 100001 and MENU 10001 "curl -s http://localhost:8080/rest/menu/10001/100001 --user admin@gmail.com:admin"
-    // get MenuForRestaurant 100001 "curl -s http://localhost:8080/rest/menu/getAll/100001 --user admin@gmail.com:admin"
+    // get All menu "curl -s http://localhost:8080/rest/menu
+    // get MenuForRestaurant 100001 and MENU 10001 "curl -s http://localhost:8080/rest/menu/10001/100001
+    // get MenuForRestaurant 100001 "curl -s http://localhost:8080/rest/menu/getAll/100001
+    // delete menu 100001 "curl -s -X DELETE http://localhost:8080/rest/menu/delete/10001
     static final String REST_URL = "/rest/menu";
 
     @Autowired

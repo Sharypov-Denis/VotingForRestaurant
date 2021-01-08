@@ -71,7 +71,6 @@
     <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>
     <!-- Datasource. Источник данных - база Heroku -->
 
-
     <!-- Datasource. Источник данных - база Postgres/HSQLDB -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
           p:driverClassName="${database.driverClassName}"
@@ -102,13 +101,10 @@
           p:testOnConnect="true"
           p:testWhileIdle="true"/>
 
-
-
               <beans profile="tomcat">
                   <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/VoteTest"/>
                   <context:property-placeholder location="classpath:db/tomcat.properties" system-properties-mode="OVERRIDE"/>
               </beans>-->
-
 
     <!--другой способ
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

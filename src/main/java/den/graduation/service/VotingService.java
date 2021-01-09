@@ -1,4 +1,4 @@
-package den.graduation;
+package den.graduation.service;
 
 import den.graduation.model.Voting;
 import den.graduation.repository.datajpa.DataJPAVotingRepository;

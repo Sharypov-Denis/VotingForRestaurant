@@ -2,7 +2,7 @@ package den.graduation.web.rest;
 
 import den.graduation.model.User;
 import den.graduation.repository.UserRepository;
-import den.graduation.UserService;
+import den.graduation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

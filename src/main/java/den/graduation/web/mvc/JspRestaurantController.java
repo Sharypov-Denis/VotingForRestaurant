@@ -3,10 +3,10 @@ package den.graduation.web.mvc;
 import den.graduation.SecurityUtil;
 import den.graduation.model.Restaurant;
 import den.graduation.model.Voting;
-import den.graduation.MenuService;
-import den.graduation.RestaurantService;
-import den.graduation.UserService;
-import den.graduation.VotingService;
+import den.graduation.service.MenuService;
+import den.graduation.service.RestaurantService;
+import den.graduation.service.UserService;
+import den.graduation.service.VotingService;
 import den.graduation.util.DataUtil;
 import den.graduation.util.UserValidator;
 import den.graduation.util.VotingUtil;
@@ -108,7 +108,6 @@ public class JspRestaurantController extends AbstractRestaurantController {
             if (!DataUtil.isVoting(list)) {
                 System.out.println("вы уже голосовали и проголосовать не сможете");
             } else {
-                //System.out.println("вы уже проголосовали, но можете проголосовать снова");
                 idRest = DataUtil.searchRestaurantId(list);
                 idVote = DataUtil.searchVoteId(list);
                 System.out.println("вы уже проголосовали, но можете проголосовать снова" + "ID предыдущего голоса: " + idVote);
@@ -116,6 +115,7 @@ public class JspRestaurantController extends AbstractRestaurantController {
                 restaurantService.updateByIdMinusOne(idRest);
                 votingService.create(voting, getId(request), SecurityUtil.authUserId());
                 restaurantService.updateById(getId(request));
+                log.info("update vote for user {}", SecurityUtil.authUserId());
             }
         } else if (DataUtil.timeEnd) {
             System.out.println("вы не можете проголосовать по времени");
@@ -123,6 +123,7 @@ public class JspRestaurantController extends AbstractRestaurantController {
             System.out.println("вы можете проголосовать - тест");
             votingService.create(voting, getId(request), SecurityUtil.authUserId());
             restaurantService.updateById(getId(request));
+            log.info("new Vote for Restaurant {}", getId(request));
         }
         DataUtil.isTimeEnd();
         log.info("updateOrCreateVoting restaurant{}", getId(request));

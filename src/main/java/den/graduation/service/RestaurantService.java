@@ -1,4 +1,4 @@
-package den.graduation;
+package den.graduation.service;
 
 import den.graduation.model.Restaurant;
 import den.graduation.repository.RestaurantRepository;

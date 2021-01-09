@@ -1,5 +1,6 @@
-package den.graduation;
+package den.graduation.service;
 
+import den.graduation.AuthorizedUser;
 import den.graduation.model.User;
 import den.graduation.repository.UserRepository;
 import org.springframework.context.annotation.Scope;

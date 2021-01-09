@@ -1,10 +1,10 @@
 package den.graduation.web;
 
 import den.graduation.SecurityUtil;
-import den.graduation.MenuService;
-import den.graduation.RestaurantService;
-import den.graduation.UserService;
-import den.graduation.VotingService;
+import den.graduation.service.MenuService;
+import den.graduation.service.RestaurantService;
+import den.graduation.service.UserService;
+import den.graduation.service.VotingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

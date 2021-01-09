@@ -2,31 +2,20 @@ package den.graduation;
 
 import den.graduation.model.Role;
 import den.graduation.model.User;
-import den.graduation.repository.UserRepository;
-import den.graduation.util.exception.NotFoundException;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
-import org.springframework.test.annotation.DirtiesContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static den.graduation.model.User.START_SEQ;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
-
+/*
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",
         "classpath:spring/spring-db.xml"
 })
+
+ */
 public class UserServiceTest {
 
     public static final int NOT_FOUND = 10;
@@ -59,7 +48,7 @@ public class UserServiceTest {
     public static void assertMatch(Iterable<User> actual, Iterable<User> expected) {
         assertThat(actual).usingElementComparatorIgnoringFields("registered", "roles").isEqualTo(expected);
     }
-
+/*
     @Autowired
     private UserService service;
 
@@ -130,5 +119,7 @@ public class UserServiceTest {
         List<User> all = service.getAll();
         assertMatch(all, ADMIN, USER);
     }
+
+ */
 
 }

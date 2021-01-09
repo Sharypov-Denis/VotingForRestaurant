@@ -3,9 +3,9 @@ package den.graduation.web.mvc;
 
 import den.graduation.model.Menu;
 import den.graduation.model.Restaurant;
-import den.graduation.MenuService;
-import den.graduation.RestaurantService;
-import den.graduation.UserService;
+import den.graduation.service.MenuService;
+import den.graduation.service.RestaurantService;
+import den.graduation.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,7 @@ package den.graduation.web;
 
 import den.graduation.SecurityUtil;
 import den.graduation.model.Restaurant;
-import den.graduation.RestaurantService;
+import den.graduation.service.RestaurantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

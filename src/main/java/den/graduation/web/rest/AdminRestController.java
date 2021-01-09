@@ -1,7 +1,7 @@
 package den.graduation.web.rest;
 
 import den.graduation.model.User;
-import den.graduation.UserService;
+import den.graduation.service.UserService;
 import den.graduation.web.AbstractUserController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,12 +17,6 @@ import java.util.List;
 @RequestMapping(value = AdminRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class AdminRestController extends AbstractUserController {
     static final String REST_URL = "/rest/admin/users";
-    //get All Users
-    //curl -s http://localhost:8080/rest/admin/users --user admin@gmail.com:admin
-    //get Users 100001
-    //curl -s http://localhost:8080/rest/admin/users/get/100001 --user admin@gmail.com:admin
-    //delete User 100000
-    //curl -s -X DELETE http://localhost:8080/rest/admin/users/delete/100000 --user admin@gmail.com:admin
     //register Users
     //curl -s -X POST -d '{"name":"New User","email":"test@mail.ru","password":"test-password"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/admin/users/register --user admin@gmail.com:admin
     //curl -s -i -X POST -d '{"name":"New User","email":"testuser@mail.ru","password":"password"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/admin/users/register --user admin@gmail.com:admin

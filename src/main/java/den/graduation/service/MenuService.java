@@ -1,9 +1,7 @@
-package den.graduation;
+package den.graduation.service;
 
 import den.graduation.model.Menu;
-import den.graduation.model.Restaurant;
 import den.graduation.repository.MenuRepository;
-import den.graduation.repository.RestaurantRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 

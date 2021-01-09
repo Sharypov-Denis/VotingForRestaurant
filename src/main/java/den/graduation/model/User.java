@@ -11,7 +11,10 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.*;
+import java.util.Collection;
+import java.util.Date;
+import java.util.EnumSet;
+import java.util.Set;
 
 @NamedQueries({
         @NamedQuery(name = den.graduation.model.User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
@@ -169,7 +172,7 @@ public class User {
         Assert.notNull(id, "Entity must has id");
         return id;
     }
-
+/*
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -178,6 +181,23 @@ public class User {
         if (o == null || !getClass().equals(Hibernate.getClass(o))) {
             return false;
         }
+        User that = (User) o;
+        return id != null && id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id == null ? 0 : id;
+    }
+
+ */
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || !getClass().equals(Hibernate.getClass(o))) return false;
+
         User that = (User) o;
         return id != null && id.equals(that.id);
     }

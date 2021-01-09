@@ -31,7 +31,7 @@ public class DataUtil {
     }
 
     public static String getDateNow() {
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("Europe/Moscow"));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formatDateTime = now.format(formatter);
         return formatDateTime;
@@ -184,13 +184,15 @@ public class DataUtil {
 
     public static LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
         return dateToConvert.toInstant()
-                .atZone(ZoneId.systemDefault())
+                //.atZone(ZoneId.systemDefault())
+                .atZone(ZoneId.of("Europe/Moscow"))
                 .toLocalDate();
     }
 
     public static LocalDateTime convertToLocalDateTimeViaInstant(Date dateToConvert) {
         return dateToConvert.toInstant()
-                .atZone(ZoneId.systemDefault())
+                //.atZone(ZoneId.systemDefault())
+                .atZone(ZoneId.of("Europe/Moscow"))
                 .toLocalDateTime();
     }
 }

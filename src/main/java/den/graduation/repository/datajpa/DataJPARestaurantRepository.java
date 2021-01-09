@@ -51,8 +51,14 @@ public class DataJPARestaurantRepository implements RestaurantRepository {
         return crudRestaurantRepository.findAll();
     }
 
+    @Override
     public void updateById(int id) {
         crudRestaurantRepository.updateById(id);
+    }
+
+    @Override
+    public void updateByIdMinusOne(int id) {
+        crudRestaurantRepository.updateByIdMinusOne(id);
     }
 
     @Override

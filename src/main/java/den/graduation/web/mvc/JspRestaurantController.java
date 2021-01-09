@@ -64,18 +64,14 @@ public class JspRestaurantController extends AbstractRestaurantController {
 
     @GetMapping("/delete")
     public String delete(HttpServletRequest request) {
-        System.out.println("проверка id пользователя " + SecurityUtil.authUserId());
-        System.out.println("проверка id ресторана " + getId(request));
         restaurantService.delete(getId(request));
+        log.info("delete restaurant {}", getId(request));
         return "redirect:/restaurants";
     }
 
     @GetMapping("/update")
     public String update(HttpServletRequest request, Model model) {
-        // model.addAttribute("restaurant", super.get(getId(request)));
         model.addAttribute("restaurant", restaurantService.getOne(getId(request)));
-        System.out.println("проверка входящего ID для функции update:" + getId(request));
-        System.out.println("Проверка, приходит ли объект: " + restaurantService.getOne(getId(request)));
         return "restaurantForm";
     }
 
@@ -92,15 +88,7 @@ public class JspRestaurantController extends AbstractRestaurantController {
                 request.getParameter("name"),
                 Integer.parseInt(request.getParameter("numberOfVotes")));
         System.out.println("ПРОВЕРКА" + id);
-/*
-        if (id == null || id == 0) {
-            super.create(restaurant);
-        } else {
-            System.out.println("проверка ID для функции update метода пост:");
-            super.update(restaurant, id);
-        }
 
- */
         restaurant.setId(id);
         restaurantService.update(restaurant);
         log.info("updateOrCreate restaurant {}", id);
@@ -112,18 +100,31 @@ public class JspRestaurantController extends AbstractRestaurantController {
         Voting voting = new Voting();
         List<Voting> list = votingService.getAllByUser(SecurityUtil.authUserId());
 
-        if (list != null && DataUtil.UpdateVoting(list) == true) {
-            //System.out.println("вы уже проголосовали, но возможно, получиться проголосовать еще - проверяем");
-            if (DataUtil.isVoting(list) == false) {
-                //System.out.println("вы уже голосовали и проголосовать не сможете");
+        Integer idVote = null;
+        Integer idRest = null;
+
+        if (list != null && DataUtil.UpdateVoting(list)) {
+            System.out.println("вы уже проголосовали, но возможно, получиться проголосовать еще - проверяем");
+            if (!DataUtil.isVoting(list)) {
+                System.out.println("вы уже голосовали и проголосовать не сможете");
             } else {
                 //System.out.println("вы уже проголосовали, но можете проголосовать снова");
+                idRest = DataUtil.searchRestaurantId(list);
+                idVote = DataUtil.searchVoteId(list);
+                System.out.println("вы уже проголосовали, но можете проголосовать снова" + "ID предыдущего голоса: " + idVote);
+                votingService.delete(idVote);
+                restaurantService.updateByIdMinusOne(idRest);
                 votingService.create(voting, getId(request), SecurityUtil.authUserId());
+                restaurantService.updateById(getId(request));
             }
+        } else if (DataUtil.timeEnd) {
+            System.out.println("вы не можете проголосовать по времени");
         } else {
+            System.out.println("вы можете проголосовать - тест");
             votingService.create(voting, getId(request), SecurityUtil.authUserId());
             restaurantService.updateById(getId(request));
         }
+        DataUtil.isTimeEnd();
         log.info("updateOrCreateVoting restaurant{}", getId(request));
         return "redirect:/restaurants";
     }

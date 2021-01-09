@@ -23,5 +23,7 @@ public interface RestaurantRepository {
 
     void updateById(int id);
 
+    void updateByIdMinusOne(int id);
+
     Restaurant getOne(int id);
 }

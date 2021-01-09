@@ -48,6 +48,11 @@ public class RestaurantService {
         repository.updateById(id);
     }
 
+    @Transactional
+    public void updateByIdMinusOne(int id) {
+        repository.updateByIdMinusOne(id);
+    }
+
     public Restaurant getOne(int id) {
         return repository.getOne(id);
     }

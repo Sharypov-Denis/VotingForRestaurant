@@ -37,7 +37,6 @@ public class JspMenuController {
     @GetMapping("/delete")
     public String delete(HttpServletRequest request) {
         menuService.delete(getId(request));
-        //exerciseRestController.delete(getId(request));
         log.info("delete menu {}", getId(request));
         return "redirect:/restaurants";
     }
@@ -53,7 +52,6 @@ public class JspMenuController {
 
     @GetMapping("/createMenu")
     public String create(Model model, HttpServletRequest request) {
-        //model.addAttribute("restaurant", new Restaurant("", "", 0));
         model.addAttribute("menu", new Menu("", 0, null));
         restaurantId = getId(request);
 
@@ -82,9 +80,7 @@ public class JspMenuController {
         } catch (Exception ex) {
             System.out.println("ERRORS");
         }
-        System.out.println("test start- " + " !!!");
         String paramId = Objects.requireNonNull(request.getParameter("id"));
-        System.out.println("test - " + paramId + " !!!");
         return Integer.parseInt(paramId);
     }
 

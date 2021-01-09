@@ -25,12 +25,16 @@ public class DataJPAVotingRepository {
     public Voting save(Voting voting, int restaurantId, int userId) {
         voting.setUser(new User(userId));
         voting.setRestaurant(new Restaurant(restaurantId));
-        System.out.println(voting);
+        System.out.println("тест голоса: " + voting);
         return crudVotingRepository.save(voting);
     }
 
     public List<Voting> getAllByUser(int userId) {
         return crudVotingRepository.getAllByUser(userId);
+    }
+
+    public void delete(int id) {
+        crudVotingRepository.delete(id);
     }
 
 }

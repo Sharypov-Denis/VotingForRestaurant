@@ -1,6 +1,5 @@
 package den.graduation;
 
-import den.graduation.model.Restaurant;
 import den.graduation.model.Voting;
 import den.graduation.repository.datajpa.DataJPAVotingRepository;
 import org.springframework.stereotype.Service;
@@ -23,5 +22,9 @@ public class VotingService {
     }
     public List<Voting> getAllByUser(int userId) {
         return repository.getAllByUser(userId);
+    }
+
+    public void delete(int id) {
+        repository.delete(id);
     }
 }

@@ -40,14 +40,12 @@ public abstract class AbstractRestaurantController {
 
     public Restaurant create(Restaurant restaurant) {
         int userId = SecurityUtil.authUserId();
-        //checkNew(restaurant);
         log.info("create {} for user {}", restaurant, userId);
         return service.create(restaurant);
     }
 
     public void update(Restaurant restaurant, int id) {
         int userId = SecurityUtil.authUserId();
-        //assureIdConsistent(restaurant, id);
         log.info("update {} for user {}", restaurant, userId);
         service.update(restaurant);
     }

@@ -42,8 +42,4 @@ public class DataJPAUserRepository implements UserRepository {
         return crudUserRepository.findAll();
     }
 
-    @Override
-    public User getWithRestaurant(int id) {
-        return crudUserRepository.getWithRestaurant(id);
-    }
 }

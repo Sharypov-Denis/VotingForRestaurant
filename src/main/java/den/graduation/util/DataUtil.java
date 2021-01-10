@@ -50,7 +50,7 @@ public class DataUtil {
         }
 
         LocalDate localDateNow = convertToLocalDateViaInstant(date);
-        LocalDateTime localDateTime = localDateNow.atTime(11, 12);
+        LocalDateTime localDateTime = localDateNow.atTime(11, 00);
 
         for (int i = 0; i < votingList.size(); i++) {
             if (convertToLocalDateTimeViaInstant(votingList.get(i).getRegistered()).isAfter(localDateTime)) {
@@ -77,7 +77,7 @@ public class DataUtil {
         LocalDate localDateNow = convertToLocalDateViaInstant(date);
         LocalDateTime localDateTimeNow = LocalDateTime.now();
         System.out.println("время сейчас: " + localDateTimeNow);
-        LocalDateTime localDateTimeEnd = localDateNow.atTime(11, 12);
+        LocalDateTime localDateTimeEnd = localDateNow.atTime(11, 00);
         System.out.println("время, до которого можно голосавать: " + localDateTimeEnd);
 
         if (localDateTimeNow.isAfter(localDateTimeEnd)) {
@@ -107,7 +107,7 @@ public class DataUtil {
         LocalDate localDateNow = convertToLocalDateViaInstant(date);
         LocalDateTime localDateTimeNow = LocalDateTime.now();
         System.out.println(localDateTimeNow);
-        LocalDateTime localDateTimeEnd = localDateNow.atTime(11, 12);
+        LocalDateTime localDateTimeEnd = localDateNow.atTime(11, 00);
         System.out.println(localDateTimeEnd);
 
         for (int i = 0; i < votingList.size(); i++) {

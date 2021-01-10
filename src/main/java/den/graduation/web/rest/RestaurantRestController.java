@@ -17,10 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = RestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class RestaurantRestController extends AbstractRestaurantController {
+
     static final String REST_URL = "/rest/restaurants";
-    // create Restaurant "curl -s -X POST -d '{"name":"Новый ресторан","numberOfVotes":10}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/restaurants/create --user admin@gmail.com:admin"
-    //                    curl -s -i -X POST -d '{"name":"Новый ресторан","numberOfVotes":10}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/restaurants/create
-    //                    curl -s -i -X POST -d '{"name":"Новый ресторан","numberOfVotes":10}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/restaurants/create --user admin@gmail.com:admin
+
     @Autowired
     private RestaurantService service;
 
@@ -50,10 +49,12 @@ public class RestaurantRestController extends AbstractRestaurantController {
     }
 
     @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<Restaurant> createWithLocation(@RequestBody Restaurant r) {
         Restaurant restaurant = super.create(r);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL + "/{id}")
+                .path(REST_URL)
+              //  .path(REST_URL).build().toUri();
                 .buildAndExpand(r.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResource).body(restaurant);

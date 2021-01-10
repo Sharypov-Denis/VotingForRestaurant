@@ -43,8 +43,6 @@ public class JspMenuController {
 
     @GetMapping("/update")
     public String update(HttpServletRequest request, Model model) {
-        // model.addAttribute("menu", menuService.get((getId(request)));
-        //model.addAttribute("exercise", exerciseRestController.get(getId(request)));
         return "menuForm";
     }
 
@@ -54,10 +52,8 @@ public class JspMenuController {
     public String create(Model model, HttpServletRequest request) {
         model.addAttribute("menu", new Menu("", 0, null));
         restaurantId = getId(request);
-
         return "menuForm";
     }
-
 
     @PostMapping
     public String updateOrCreate(HttpServletRequest request) {
@@ -83,5 +79,4 @@ public class JspMenuController {
         String paramId = Objects.requireNonNull(request.getParameter("id"));
         return Integer.parseInt(paramId);
     }
-
 }

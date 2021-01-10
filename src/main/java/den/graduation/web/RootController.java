@@ -70,7 +70,6 @@ public class RootController {
 
         return "restaurants";
     }
-
  */
 
 }

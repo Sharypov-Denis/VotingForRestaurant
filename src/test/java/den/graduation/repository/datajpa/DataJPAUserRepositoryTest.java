@@ -42,10 +42,7 @@ public class DataJPAUserRepositoryTest {
     @Test
     public void create() {
         User user = userService.create(USER_100010);
-        System.out.println(user);
         int id = user.id();
-        System.out.println(id);
-        System.out.println(userService.get(id));
         assertThat(user).isEqualTo(userService.get(id));
     }
 
@@ -53,7 +50,6 @@ public class DataJPAUserRepositoryTest {
     public void getByEmail() {
         User user = userService.create(USER_100030);
         User user1 = userService.getByEmail("adminnew@mail.ru");
-        System.out.print(user1);
         assertThat(user).isEqualToIgnoringGivenFields(USER_100030,"registered", "roles");
     }
 /*

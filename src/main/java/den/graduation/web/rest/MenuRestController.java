@@ -15,6 +15,8 @@ import java.util.List;
 @RestController
 @RequestMapping(value = MenuRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class MenuRestController {
+
+    //curl -s -i -X POST -d '{"name":"testmenu","price":"122"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/menu/create/100002
     static final String REST_URL = "/rest/menu";
 
     @Autowired
@@ -42,12 +44,13 @@ public class MenuRestController {
     }
 
     @PostMapping(value = "/create/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Menu> createWithLocation(@RequestBody Menu menu, @PathVariable int id) {
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ResponseEntity<Menu> create(@RequestBody Menu menu, @PathVariable int id) {
         Menu created = menuService.create(menu, id);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
-                .buildAndExpand(created.getId()).toUri();
+                .buildAndExpand(menu.getId()).toUri();
 
         return ResponseEntity.created(uriOfNewResource).body(created);
     }

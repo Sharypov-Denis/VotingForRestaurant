@@ -15,10 +15,6 @@ public interface RestaurantRepository {
 
     List<Restaurant> getAll();
 
-    //default Restaurant getWithUser(int id, int userId) {
-   //     throw new UnsupportedOperationException();
-   // }
-
     List<Restaurant> getAllRestaurants();
 
     void updateById(int id);

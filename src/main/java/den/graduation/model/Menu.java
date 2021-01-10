@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "menu")
 @Proxy(lazy = false)//добавил из-за ошибки
-public class Menu {
+public class Menu{
     public static final int START_SEQ = 100000;
 
     @Id
@@ -53,6 +53,12 @@ public class Menu {
         this.name = name;
         this.price = price;
         this.dateTime = dateTime;
+    }
+
+    public Menu(Integer id, String name, int price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
     }
 
     public Integer getId() {

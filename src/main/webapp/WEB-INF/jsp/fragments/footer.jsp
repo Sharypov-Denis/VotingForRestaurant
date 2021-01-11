@@ -66,6 +66,19 @@
     <br>
     POST http://sharypovvote.herokuapp.com/rest/restaurants/create' --header 'Content-Type: application/json' --data-raw
     '{"name":"New restoran","numberOfVotes":"10"}
+    <h3>VotingRestController:</h3>
+    get All Votes for User id = 100001:
+    <br>
+    GET http://sharypovvote.herokuapp.com/rest/vote/getAllByUser/100001 --user admin@gmail.com:admin
+    <br>
+    delete Vote id = 2:
+    <br>
+    DELETE http://sharypovvote.herokuapp.com/rest/vote/delete/2 --user admin@gmail.com:admin
+    <br>
+    create Vote for Restaurant id = 100004 for User id = 100001:
+    <br>
+    POST 'http://sharypovvote.herokuapp.com/rest/vote/create/100004' --header 'Content-Type: application/json' --data-raw '{"registered":"2021-01-03T00:01:00"}' --user admin@gmail.com:admin
+
 </div>
 
 

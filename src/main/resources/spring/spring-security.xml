@@ -20,6 +20,7 @@
         <!--  <intercept-url pattern="/rest/admin/**" access="permitAll()"/>-->
       <intercept-url pattern="/rest/users/**" access="permitAll()"/>
       <intercept-url pattern="/rest/restaurants/**" access="permitAll()"/>
+        <intercept-url pattern="/rest/vote/**" access="permitAll()"/>
       <csrf disabled="true"/>
   </http>
 

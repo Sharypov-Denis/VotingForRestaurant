@@ -84,6 +84,19 @@ create Restaurant
 curl --location --request POST 'http://localhost:8080/rest/restaurants/create' --header 'Content-Type: application/json' --data-raw '{"name":"New restoran","numberOfVotes":"10"}
 
 
+VotingRestController:
+
+get All Votes for User id = 100001
+
+curl -s http://localhost:8080/rest/vote/getAllByUser/100001 --user admin@gmail.com:admin
+
+delete Vote id = 2
+curl -s -X DELETE http://localhost:8080/rest/vote/delete/2 --user admin@gmail.com:admin
+
+create Vote for Restaurant id = 100004 for User id = 100001
+curl --location --request POST 'http://localhost:8080/rest/vote/create/100004' --header 'Content-Type: application/json' --data-raw '{"registered":"2021-01-03T00:01:00"}' --user admin@gmail.com:admin
+
+
 Планируемые доработки:
 - Кеширование данных с Spring Cache/Hibernate cache
 - Локализация

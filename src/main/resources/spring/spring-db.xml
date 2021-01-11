@@ -33,7 +33,6 @@
             </bean>
         </property>
 
-
         <!--поиск сущностей в этом пакете-->
         <property name="packagesToScan"
                   value="den.graduation"/>
@@ -53,17 +52,9 @@
                        value="org.ehcache.jsr107.EhcacheCachingProvider"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SECOND_LEVEL_CACHE}" value="true"/>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_QUERY_CACHE}" value="false"/> <!--default-->
-
-                <!--
-                                    <entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_SCRIPTS_ACTION}" value="drop-and-create"/>
-                                    <entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_SCRIPTS_CREATE_TARGET}" value="${TOPJAVA_ROOT}/config/ddl/create.ddl"/>
-                                    <entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_SCRIPTS_DROP_TARGET}" value="${TOPJAVA_ROOT}/config/ddl/drop.ddl"/>
-                                    <entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="create"/>
-                -->
             </map>
         </property>
     </bean>
-
 
     <!-- Datasource. Источник данных - база PostgresSQL -->
     <!--    <context:property-placeholder location="classpath:db/postgres.properties" system-properties-mode="OVERRIDE"/>-->
@@ -79,7 +70,6 @@
           p:password="${database.password}"/>
 
     <!--  <context:property-placeholder location="classpath:/db/heroku.properties" system-properties-mode="OVERRIDE"/>
-
 
     <bean class="java.net.URI" id="dbUrl">
         <constructor-arg value="${DATABASE_URL}"/>

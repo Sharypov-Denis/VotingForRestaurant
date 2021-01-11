@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "menu")
-@Proxy(lazy = false)//добавил из-за ошибки
+@Proxy(lazy = false)
 public class Menu{
     public static final int START_SEQ = 100000;
 

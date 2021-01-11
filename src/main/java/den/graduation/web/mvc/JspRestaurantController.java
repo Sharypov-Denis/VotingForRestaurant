@@ -3,12 +3,9 @@ package den.graduation.web.mvc;
 import den.graduation.SecurityUtil;
 import den.graduation.model.Restaurant;
 import den.graduation.model.Voting;
-import den.graduation.service.MenuService;
 import den.graduation.service.RestaurantService;
-import den.graduation.service.UserService;
 import den.graduation.service.VotingService;
 import den.graduation.util.DataUtil;
-import den.graduation.util.UserValidator;
 import den.graduation.util.VotingUtil;
 import den.graduation.web.AbstractRestaurantController;
 import org.slf4j.Logger;
@@ -31,19 +28,10 @@ public class JspRestaurantController extends AbstractRestaurantController {
     private static final Logger log = LoggerFactory.getLogger(JspRestaurantController.class);
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
-    private MenuService menuService;
-
-    @Autowired
     private VotingService votingService;
 
     @Autowired
     private RestaurantService restaurantService;
-
-    @Autowired
-    private UserValidator validatorRest;
 
     @GetMapping
     public String getRestaurant(Model model) {

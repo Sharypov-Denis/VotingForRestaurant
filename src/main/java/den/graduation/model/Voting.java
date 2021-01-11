@@ -3,15 +3,12 @@ package den.graduation.model;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
 @Table(name = "voting")
-@Proxy(lazy = false)//добавил из-за ошибки
+@Proxy(lazy = false)
 public class Voting {
     public static final int START_SEQ = 100000;
 

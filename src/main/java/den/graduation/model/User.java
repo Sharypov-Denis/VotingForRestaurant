@@ -24,7 +24,7 @@ import java.util.Set;
 })
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
-@Proxy(lazy = false)//добавил из-за ошибки
+@Proxy(lazy = false)
 public class User implements Serializable {
 
     public static final int START_SEQ = 100000;
@@ -173,25 +173,6 @@ public class User implements Serializable {
         Assert.notNull(id, "Entity must has id");
         return id;
     }
-/*
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || !getClass().equals(Hibernate.getClass(o))) {
-            return false;
-        }
-        User that = (User) o;
-        return id != null && id.equals(that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return id == null ? 0 : id;
-    }
-
- */
 
     @Override
     public boolean equals(Object o) {

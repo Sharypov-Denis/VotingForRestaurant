@@ -5,7 +5,6 @@ import den.graduation.model.Menu;
 import den.graduation.model.Restaurant;
 import den.graduation.service.MenuService;
 import den.graduation.service.RestaurantService;
-import den.graduation.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +23,6 @@ import java.util.Objects;
 @RequestMapping(value = "/menu")
 public class JspMenuController {
     private static final Logger log = LoggerFactory.getLogger(JspMenuController.class);
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private MenuService menuService;

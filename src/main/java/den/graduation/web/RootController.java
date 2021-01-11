@@ -1,10 +1,7 @@
 package den.graduation.web;
 
 import den.graduation.SecurityUtil;
-import den.graduation.service.MenuService;
-import den.graduation.service.RestaurantService;
 import den.graduation.service.UserService;
-import den.graduation.service.VotingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,15 +15,6 @@ public class RootController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private RestaurantService restaurantService;
-
-    @Autowired
-    private MenuService menuService;
-
-    @Autowired
-    private VotingService votingService;
 
     @GetMapping("/")
     public String root() {
@@ -52,14 +40,7 @@ public class RootController {
         return "redirect:restaurants";
     }
 /*
-    @PostMapping("/users")
-    public String setUser(HttpServletRequest request) {
-        int userId = Integer.parseInt(request.getParameter("userId"));
-        SecurityUtil.authUserId();
-        return "redirect:restaurants";
-    }
-
-    @GetMapping("/restaurants")
+       @GetMapping("/restaurants")
     public String getRestaurant(Model model, HttpServletRequest request) {
         List<Voting> list = votingService.getAllByUser(SecurityUtil.authUserId());
         String vote = VotingUtil.createOrUpdateVoting(list);

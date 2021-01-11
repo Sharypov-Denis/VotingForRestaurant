@@ -15,7 +15,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "restaurant")
-@Proxy(lazy = false)//добавил из-за ошибки
+@Proxy(lazy = false)
 public class Restaurant {
 
     public static final int START_SEQ = 100000;

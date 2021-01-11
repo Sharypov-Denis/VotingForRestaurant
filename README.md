@@ -1,5 +1,6 @@
 Проект "Система голосования", выполненный после прохождения стажировки Java Enterprise Online Project. 
-!!!Проект в разработке!!!
+
+!Проект в разработке!
 
 2 типа пользователей: админ и обычные пользователи. Администратор может ввести ресторан и его обеденное меню дня.
 Меню меняется каждый день (обновления делают админы).
@@ -12,7 +13,7 @@
 Каждый ресторан предлагает новое меню каждый день.
 
 Технологии и инструменты, используемые в проекте:
- Maven, Spring Security, Spring MVC, Spring Data JPA, Hibernate ORM, REST(Jackson), JSP, PostgreSQL, HSQLDB, Bootstrap(CSS).
+Maven, Spring Security, Spring MVC, Spring Data JPA, Hibernate ORM, REST(Jackson), JSP, PostgreSQL, HSQLDB, Bootstrap(CSS).
 - хранение данных реализовано в HSQLDB
 - регистрация/авторизация и права доступа на основе ролей (USER, ADMIN)
 - деплой в контейнер сервлетов Tomcat, в облачный сервис Heroku(http://sharypovvote.herokuapp.com/).
@@ -81,7 +82,7 @@ curl -s http://localhost:8080/rest/restaurants/100002
 
 create Restaurant
 
-curl --location --request POST 'http://localhost:8080/rest/restaurants/create' --header 'Content-Type: application/json' --data-raw '{"name":"New restoran","numberOfVotes":"10"}
+curl --location --request POST 'http://localhost:8080/rest/restaurants/create' --header 'Content-Type: application/json' --data-raw '{"name":"New restaurant","numberOfVotes":"10"}
 
 
 VotingRestController:

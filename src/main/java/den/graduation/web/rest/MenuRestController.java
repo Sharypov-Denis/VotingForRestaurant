@@ -2,6 +2,7 @@ package den.graduation.web.rest;
 
 import den.graduation.model.Menu;
 import den.graduation.service.MenuService;
+import den.graduation.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,11 +17,13 @@ import java.util.List;
 @RequestMapping(value = MenuRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 public class MenuRestController {
 
-    //curl -s -i -X POST -d '{"name":"testmenu","price":"122"}' -H 'Content-Type:application/json;charset=UTF-8' http://localhost:8080/rest/menu/create/100002
     static final String REST_URL = "/rest/menu";
 
     @Autowired
     private MenuService menuService;
+
+    @Autowired
+    private RestaurantService restaurantService;
 
     @GetMapping("/{id}/{idr}")
     public Menu get(@PathVariable int id, @PathVariable int idr) {
@@ -46,6 +49,7 @@ public class MenuRestController {
     @PostMapping(value = "/create/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<Menu> create(@RequestBody Menu menu, @PathVariable int id) {
+        menu.setRestaurant(restaurantService.getOne(id));
         Menu created = menuService.create(menu, id);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -54,5 +58,4 @@ public class MenuRestController {
 
         return ResponseEntity.created(uriOfNewResource).body(created);
     }
-
 }

@@ -1,4 +1,5 @@
-Выпускной проект "Система голосования", выполненный после прохождения стажировки Java Enterprise Online Project.
+Проект "Система голосования", выполненный после прохождения стажировки Java Enterprise Online Project. 
+!!!Проект в разработке!!!
 
 2 типа пользователей: админ и обычные пользователи. Администратор может ввести ресторан и его обеденное меню дня.
 Меню меняется каждый день (обновления делают админы).
@@ -16,9 +17,9 @@
 - регистрация/авторизация и права доступа на основе ролей (USER, ADMIN)
 - деплой в контейнер сервлетов Tomcat, в облачный сервис Heroku(http://sharypovvote.herokuapp.com/).
 
-Use curl for test:
-AdminRestController
+Use curl or Postman for test:
 
+AdminRestController
 
 get All Users: 
 
@@ -33,6 +34,11 @@ curl -s http://localhost:8080/rest/admin/users/get/100001 --user admin@gmail.com
 delete User with id = 100000
 
 curl -s -X DELETE http://localhost:8080/rest/admin/users/delete/100000 --user admin@gmail.com:admin
+
+
+register User
+
+curl --location --request POST 'http://localhost:8080/rest/users/register' --header 'Content-Type: application/json' --data-raw '{"name":"NewUser","email":"test@mail.ru","password":"12345"} --user admin@gmail.com:admin
 
 
 MenuRestController:
@@ -57,6 +63,11 @@ delete menu with id = 100001
 curl -s -X DELETE http://localhost:8080/rest/menu/delete/10001
 
 
+create menu for Restaurant id = 100001
+
+curl --location --request POST 'http://localhost:8080/rest/menu/create/100001' --header 'Content-Type: application/json' --data-raw '{"name":"testmenu","price":"111","dateTime":"2020-12-29T00:00:00","restaurant":{"id":100001}}' --user admin@gmail.com:admin
+
+
 RestaurantRestController:
 
 get All Restaurants 
@@ -68,10 +79,9 @@ get Restaurants with id = 100002
 
 curl -s http://localhost:8080/rest/restaurants/100002
 
+create Restaurant
 
-delete Restaurant with id = 100001 
-
-curl -s -X DELETE http://localhost:8080/rest/restaurants/delete/100001 --user admin@gmail.com:admin
+curl --location --request POST 'http://localhost:8080/rest/restaurants/create' --header 'Content-Type: application/json' --data-raw '{"name":"New restoran","numberOfVotes":"10"}
 
 
 Планируемые доработки:

@@ -31,7 +31,7 @@ public class DataJPAUserRepositoryTest {
     public final static User USER_100020 = new User(ID_100020, "newName",
             "new@mai.ru", "newPassword", Role.USER);
 
-    public final static User USER_100030 = new User(100002, "adminNew",
+    public final static User USER_100030 = new User(100005, "adminNew",
             "adminnew@mail.ru", "password", Role.USER);
     public final static User USER_100040 = new User(100040, "userNew2",
             "userNew2@gmail.com", "password", Role.USER);

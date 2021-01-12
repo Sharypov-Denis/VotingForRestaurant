@@ -6,7 +6,6 @@ import den.graduation.model.Voting;
 import den.graduation.service.RestaurantService;
 import den.graduation.service.VotingService;
 import den.graduation.util.DataUtil;
-import den.graduation.util.VotingUtil;
 import den.graduation.web.AbstractRestaurantController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +35,7 @@ public class JspRestaurantController extends AbstractRestaurantController {
     @GetMapping
     public String getRestaurant(Model model) {
         List<Voting> list = votingService.getAllByUser(SecurityUtil.authUserId());
-        String vote = VotingUtil.createOrUpdateVoting(list);
-
+        String vote = DataUtil.userVotesStatus(list);
         model.addAttribute("restaurants", restaurantService.getAllRestaurants());
         model.addAttribute("time", DataUtil.getDateNow());
         model.addAttribute("status", vote);
@@ -75,14 +73,24 @@ public class JspRestaurantController extends AbstractRestaurantController {
         Restaurant restaurant = new Restaurant(
                 request.getParameter("name"),
                 Integer.parseInt(request.getParameter("numberOfVotes")));
-        System.out.println("ПРОВЕРКА" + id);
-
         restaurant.setId(id);
         restaurantService.update(restaurant);
         log.info("updateOrCreate restaurant {}", id);
         return "redirect:/restaurants";
     }
 
+    @GetMapping("/voting")
+    public String updateOrCreateVoting(HttpServletRequest request) {
+        DataUtil.createAndUpdateVoting(getId(request));
+        log.info("updateOrCreateVoting restaurant{}", getId(request));
+        return "redirect:/restaurants";
+    }
+
+    private int getId(HttpServletRequest request) {
+        String paramId = Objects.requireNonNull(request.getParameter("id"));
+        return Integer.parseInt(paramId);
+    }
+/* старый контроллер
     @GetMapping("/voting")
     public String updateOrCreateVoting(HttpServletRequest request) {
         Voting voting = new Voting();
@@ -108,7 +116,7 @@ public class JspRestaurantController extends AbstractRestaurantController {
         } else if (DataUtil.timeEnd) {
             System.out.println("вы не можете проголосовать по времени");
         } else {
-            System.out.println("вы можете проголосовать - тест");
+            System.out.println("вы можете проголосовать");
             votingService.create(voting, getId(request), SecurityUtil.authUserId());
             restaurantService.updateById(getId(request));
             log.info("new Vote for Restaurant {}", getId(request));
@@ -117,9 +125,5 @@ public class JspRestaurantController extends AbstractRestaurantController {
         log.info("updateOrCreateVoting restaurant{}", getId(request));
         return "redirect:/restaurants";
     }
-
-    private int getId(HttpServletRequest request) {
-        String paramId = Objects.requireNonNull(request.getParameter("id"));
-        return Integer.parseInt(paramId);
-    }
+     */
 }

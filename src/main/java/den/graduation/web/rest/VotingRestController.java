@@ -7,6 +7,7 @@ import den.graduation.service.MenuService;
 import den.graduation.service.RestaurantService;
 import den.graduation.service.UserService;
 import den.graduation.service.VotingService;
+import den.graduation.util.DataUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -51,13 +52,17 @@ public class VotingRestController {
     public ResponseEntity<Voting> create(@RequestBody Voting voting, @PathVariable int id) {
         voting.setUser(userService.get(SecurityUtil.authUserId()));
         voting.setRestaurant(restaurantService.getOne(id));
-        Voting votingCreated = votingService.create(voting, id, SecurityUtil.authUserId());
+        //Voting votingCreated = votingService.create(voting, id, SecurityUtil.authUserId());
+
+        DataUtil.createAndUpdateVoting(id);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(voting.getId()).toUri();
 
-        return ResponseEntity.created(uriOfNewResource).body(votingCreated);
+        //return ResponseEntity.created(uriOfNewResource).body(votingCreated);
+        //return new ResponseEntity<>(HttpStatus.CREATED);
+        return ResponseEntity.ok().build();
     }
 
 }

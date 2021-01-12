@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
         "classpath:spring/spring-db.xml"
 })
 @RunWith(SpringRunner.class)
-@Sql(scripts = "classpath:db/testPopulateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+@Sql(scripts = "classpath:db/PopulateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 public class DataJPAUserRepositoryTest {
 
     public final static Integer ID_100010 = 100010;

@@ -15,7 +15,7 @@
 <%--
 <div class="container lead">
 
-    <h4>Для тестирования REST API через Postman(для rest api время голосования не учитывается):</h4>
+    <h4>Для тестирования REST API через Postman:</h4>
 
     <h5>AdminRestController</h5>
     <h6>get All Users:</h6> GET http://sharypovvote.herokuapp.com/rest/admin/users --user admin@gmail.com:admin

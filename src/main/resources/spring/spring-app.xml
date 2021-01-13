@@ -8,5 +8,7 @@
     <import resource="spring-security.xml"/>
     <context:component-scan base-package="den.graduation.**.web"/>
     <context:component-scan base-package="den.graduation.**.service"/>
+
     <context:component-scan base-package="den.graduation.**.util"/>
+    <!--<context:component-scan base-package="den.graduation.**.config"/>-->
 </beans>

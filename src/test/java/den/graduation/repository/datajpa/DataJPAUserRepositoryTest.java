@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class DataJPAUserRepositoryTest {
 
     public final static Integer ID_100010 = 100010;
-    public final static User USER_100010 = new User(ID_100010, "userTest",
+    public final static User USER_100010 = new User(100010, "userTest",
             "userTest@mail.ru", "userTest", Role.USER);
 
     public final static Integer ID_100020 = 100020;
@@ -42,7 +42,7 @@ public class DataJPAUserRepositoryTest {
     @Test
     public void create() {
         User user = userService.create(USER_100010);
-        int id = user.id();
+        int id = user.getId();
         assertThat(user).isEqualTo(userService.get(id));
     }
 

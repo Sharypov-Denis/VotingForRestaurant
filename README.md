@@ -1,6 +1,109 @@
-Проект "Система голосования", выполненный после прохождения стажировки Java Enterprise Online Project. 
+# My project "Voting system"
 
-!Проект в разработке!
+# Technology stack
+
+* Java 14
+* Spring(Security, MVC, Data Jpa)
+* Hibernate
+* HSQLDB
+* Jackson
+* Maven
+* SLF4J, Logback
+* JUnit
+* REST(Jackson)
+* Bootstrap (css/js)
+* JSP/JSTL/Html
+* Tomcat
+Developing in IntelliJ IDEA
+
+# Documentation
+Swagger documentation will be available at http://sharypovvote.herokuapp.com/swagger-ui.html
+
+# The task is:
+
+Build a voting system for deciding where to have lunch.
+
+ * 2 types of users: admin and regular users
+ * Admin can input a restaurant and it's lunch menu of the day (2-5 items usually, just a dish name and price)
+ * Menu changes each day (admins do the updates)
+ * Users can vote on which restaurant they want to have lunch at
+ * Only one vote counted per user
+ * If user votes again the same day:
+    - If it is before 11:00 we asume that he changed his mind.
+    - If it is after 11:00 then it is too late, vote can't be changed
+As a result, provide a link to github repository. It should contain the code, README.md with API documentation and couple curl commands to test it.
+
+P.S.: Make sure everything works with latest version that is on github :)
+
+P.P.S.: Assume that your API will be used by a frontend developer to build frontend on top of that.
+
+# Use curl for test REST API:
+## AdminRestController
+### Get All Users: 
+```sh
+curl -s http://localhost:8080/rest/admin/users --user admin@gmail.com:admin
+```
+### Get Users with id = 100001
+```sh
+curl -s http://localhost:8080/rest/admin/users/get/100001 --user admin@gmail.com:admin
+```
+### Delete User with id = 100000
+```sh
+curl -s -X DELETE http://localhost:8080/rest/admin/users/delete/100000 --user admin@gmail.com:admin
+```
+### Register User
+```sh
+curl --location --request POST 'http://localhost:8080/rest/users/register' --header 'Content-Type: application/json' --data-raw '{"name":"NewUser","email":"test@mail.ru","password":"12345"} --user admin@gmail.com:admin
+```
+## MenuRestController:
+### Get All menu 
+```sh
+curl -s http://localhost:8080/rest/menu
+```
+### Get MenuForRestaurant with id = 100001 and menu id = 10001 
+```sh
+curl -s http://localhost:8080/rest/menu/10001/100001
+```
+### Get MenuForRestaurant with id = 100001 
+```sh
+curl -s http://localhost:8080/rest/menu/getAll/100001
+```
+### Delete menu with id = 100001
+```sh
+curl -s -X DELETE http://localhost:8080/rest/menu/delete/10001
+```
+### Create menu for Restaurant id = 100001
+```sh
+curl --location --request POST 'http://localhost:8080/rest/menu/create/100001' --header 'Content-Type: application/json' --data-raw '{"name":"testmenu","price":"111","dateTime":"2020-12-29T00:00:00","restaurant":{"id":100001}}' --user admin@gmail.com:admin
+```
+## RestaurantRestController:
+### Get All Restaurants 
+```sh
+curl -s http://localhost:8080/rest/restaurants
+```
+### Get Restaurants with id = 100002 
+```sh
+curl -s http://localhost:8080/rest/restaurants/100002
+```
+### Create Restaurant
+```sh
+curl --location --request POST 'http://localhost:8080/rest/restaurants/create' --header 'Content-Type: application/json' --data-raw '{"name":"New restaurant","numberOfVotes":"10"}
+```
+## VotingRestController:
+### Get All Votes for User id = 100001
+```sh
+curl -s http://localhost:8080/rest/vote/getAllByUser/100001 --user admin@gmail.com:admin
+```
+### Delete Vote id = 2
+```sh
+curl -s -X DELETE http://localhost:8080/rest/vote/delete/2 --user admin@gmail.com:admin
+```
+### Create Vote for Restaurant id = 100004 for User id = 100001
+```sh
+curl --location --request POST 'http://localhost:8080/rest/vote/create/100004' --header 'Content-Type: application/json' --data-raw '{"registered":"2021-01-03T00:01:00"}' --user admin@gmail.com:admin
+```
+-----------------------------------------------------------------------------------------------------
+Проект "Система голосования", выполненный после прохождения стажировки Java Enterprise Online Project. 
 
 2 типа пользователей: админ и обычные пользователи. Администратор может ввести ресторан и его обеденное меню дня.
 Меню меняется каждый день (обновления делают админы).
@@ -17,88 +120,3 @@ Maven, Spring Security, Spring MVC, Spring Data JPA, Hibernate ORM, REST(Jackson
 - хранение данных реализовано в HSQLDB
 - регистрация/авторизация и права доступа на основе ролей (USER, ADMIN)
 - деплой в контейнер сервлетов Tomcat, в облачный сервис Heroku(http://sharypovvote.herokuapp.com/).
-
-Use curl or Postman for test:
-
-AdminRestController
-
-get All Users: 
-
-curl -s http://localhost:8080/rest/admin/users --user admin@gmail.com:admin
-
-
-get Users with id = 100001
-
-curl -s http://localhost:8080/rest/admin/users/get/100001 --user admin@gmail.com:admin
-
-
-delete User with id = 100000
-
-curl -s -X DELETE http://localhost:8080/rest/admin/users/delete/100000 --user admin@gmail.com:admin
-
-
-register User
-
-curl --location --request POST 'http://localhost:8080/rest/users/register' --header 'Content-Type: application/json' --data-raw '{"name":"NewUser","email":"test@mail.ru","password":"12345"} --user admin@gmail.com:admin
-
-
-MenuRestController:
-
-get All menu 
-
-curl -s http://localhost:8080/rest/menu
-
-
-get MenuForRestaurant with id = 100001 and menu id = 10001 
-
-curl -s http://localhost:8080/rest/menu/10001/100001
-
-
-get MenuForRestaurant with id = 100001 
-
-curl -s http://localhost:8080/rest/menu/getAll/100001
-
-
-delete menu with id = 100001
-
-curl -s -X DELETE http://localhost:8080/rest/menu/delete/10001
-
-
-create menu for Restaurant id = 100001
-
-curl --location --request POST 'http://localhost:8080/rest/menu/create/100001' --header 'Content-Type: application/json' --data-raw '{"name":"testmenu","price":"111","dateTime":"2020-12-29T00:00:00","restaurant":{"id":100001}}' --user admin@gmail.com:admin
-
-
-RestaurantRestController:
-
-get All Restaurants 
-
-curl -s http://localhost:8080/rest/restaurants
-
-
-get Restaurants with id = 100002 
-
-curl -s http://localhost:8080/rest/restaurants/100002
-
-create Restaurant
-
-curl --location --request POST 'http://localhost:8080/rest/restaurants/create' --header 'Content-Type: application/json' --data-raw '{"name":"New restaurant","numberOfVotes":"10"}
-
-
-VotingRestController:
-
-get All Votes for User id = 100001
-
-curl -s http://localhost:8080/rest/vote/getAllByUser/100001 --user admin@gmail.com:admin
-
-delete Vote id = 2
-curl -s -X DELETE http://localhost:8080/rest/vote/delete/2 --user admin@gmail.com:admin
-
-create Vote for Restaurant id = 100004 for User id = 100001
-curl --location --request POST 'http://localhost:8080/rest/vote/create/100004' --header 'Content-Type: application/json' --data-raw '{"registered":"2021-01-03T00:01:00"}' --user admin@gmail.com:admin
-
-
-Планируемые доработки:
-- Кеширование данных с Spring Cache/Hibernate cache
-- Локализация
-- Перевод проекта на Spring Boot(отдельный проект)

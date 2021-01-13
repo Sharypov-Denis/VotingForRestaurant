@@ -2,6 +2,7 @@ package den.graduation.web;
 
 import den.graduation.model.User;
 import den.graduation.service.UserService;
+import den.graduation.util.ValidationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public abstract class AbstractUserController {
     }
 
     public User create(User user) {
+        ValidationUtil.checkNewUser(user);
         log.info("create {}", user);
         return service.create(user);
     }

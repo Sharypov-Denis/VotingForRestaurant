@@ -3,6 +3,7 @@ package den.graduation.web;
 import den.graduation.model.User;
 import den.graduation.service.UserService;
 import den.graduation.util.UserValidator;
+import den.graduation.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -38,6 +39,7 @@ public class ProfileUIController {
             model.addAttribute("register", true);
             return "profile";
         }
+        ValidationUtil.checkNewUser(user);
         userService.create(user);
         status.setComplete();
         return "redirect:/login";

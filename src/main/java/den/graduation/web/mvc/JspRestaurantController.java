@@ -10,6 +10,7 @@ import den.graduation.web.AbstractRestaurantController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +49,7 @@ public class JspRestaurantController extends AbstractRestaurantController {
         return "sorry";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/delete")
     public String delete(HttpServletRequest request) {
         restaurantService.delete(getId(request));
@@ -55,12 +57,14 @@ public class JspRestaurantController extends AbstractRestaurantController {
         return "redirect:/restaurants";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/update")
     public String update(HttpServletRequest request, Model model) {
         model.addAttribute("restaurant", restaurantService.getOne(getId(request)));
         return "restaurantForm";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/create")
     public String create(Model model) {
         model.addAttribute("restaurant", new Restaurant("", 0));
@@ -68,6 +72,7 @@ public class JspRestaurantController extends AbstractRestaurantController {
         return "restaurantForm";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public String updateOrCreate(@RequestParam(value = "id") Integer id, HttpServletRequest request) {
         Restaurant restaurant = new Restaurant(

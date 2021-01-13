@@ -3,6 +3,7 @@ package den.graduation.web.rest;
 import den.graduation.model.User;
 import den.graduation.repository.UserRepository;
 import den.graduation.service.UserService;
+import den.graduation.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -42,6 +43,7 @@ public class UserRestController {
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
         //@ResponseStatus(value = HttpStatus.CREATED)
     ResponseEntity<Void> createUser(@RequestBody User user) {
+        ValidationUtil.checkNewUser(user);//рефакторинг 13.01
         userService.create(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
         // return ResponseEntity.ok().build();

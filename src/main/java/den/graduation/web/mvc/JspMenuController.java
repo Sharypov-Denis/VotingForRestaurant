@@ -8,6 +8,7 @@ import den.graduation.service.RestaurantService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,7 @@ public class JspMenuController {
     @Autowired
     private RestaurantService restaurantService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/delete")
     public String delete(HttpServletRequest request) {
         menuService.delete(getId(request));
@@ -37,6 +39,7 @@ public class JspMenuController {
         return "redirect:/restaurants";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/update")
     public String update(HttpServletRequest request, Model model) {
         return "menuForm";
@@ -44,6 +47,7 @@ public class JspMenuController {
 
     private Integer restaurantId;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/createMenu")
     public String create(Model model, HttpServletRequest request) {
         model.addAttribute("menu", new Menu("", 0, null));
@@ -51,6 +55,7 @@ public class JspMenuController {
         return "menuForm";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public String updateOrCreate(HttpServletRequest request) {
         Menu menu = new Menu(

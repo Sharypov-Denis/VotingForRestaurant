@@ -16,9 +16,6 @@
 * Tomcat
 Developing in IntelliJ IDEA
 
-# Documentation
-Swagger documentation will be available at http://sharypovvote.herokuapp.com/swagger-ui.html
-
 # The task is:
 
 Build a voting system for deciding where to have lunch.

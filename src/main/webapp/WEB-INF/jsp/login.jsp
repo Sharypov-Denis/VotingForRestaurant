@@ -39,7 +39,7 @@
 </div>
 <div class="container lead">
 
-    <h4>На данный момент, для отображения данных во View используются традиционные @Controller's. Но в проекте, параллельно также имеются REST контроллеры. Для тестирования REST API через Postman, используйте данные ниже:</h4>
+    <h5>На данный момент, для отображения данных во View используются традиционные @Controller's. Но в проекте, параллельно также имеются REST контроллеры. Для тестирования REST API через Postman, используйте данные ниже:</h5>
 
     <h5>AdminRestController</h5>
     <h6>get All Users:</h6> GET http://sharypovvote.herokuapp.com/rest/admin/users --user admin@gmail.com:admin

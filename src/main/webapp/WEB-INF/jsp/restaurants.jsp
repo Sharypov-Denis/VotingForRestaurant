@@ -38,7 +38,7 @@
                             <c:forEach var="num" items="${restaurant.menus}">
                                 <tr>
                                     <br>
-                                    <th>Меню на дату: ${num.dateTime.toLocalDate()},</th>
+                                    <%--<th>Меню на дату: ${num.dateTime.toLocalDate()},</th>--%>
                                     <th>Блюдо: ${num.name},</th>
                                     <th>Цена: ${num.price} руб.</th>
 

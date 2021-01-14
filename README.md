@@ -5,7 +5,7 @@
 * Java 14
 * Spring(Security, MVC, Data Jpa)
 * Hibernate
-* HSQLDB
+* HSQLDB/PostgreSQL
 * Jackson
 * Maven
 * SLF4J, Logback
@@ -35,6 +35,8 @@ P.S.: Make sure everything works with latest version that is on github :)
 P.P.S.: Assume that your API will be used by a frontend developer to build frontend on top of that.
 
 # Use curl for test REST API:
+user: admin@gmail.com:
+password: admin
 ## AdminRestController
 ### Get All Users: 
 ```sh

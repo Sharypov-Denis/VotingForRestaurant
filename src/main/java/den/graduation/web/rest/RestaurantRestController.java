@@ -54,10 +54,7 @@ public class RestaurantRestController extends AbstractRestaurantController {
         Restaurant restaurant = super.create(r);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL)
-              //  .path(REST_URL).build().toUri();
                 .buildAndExpand(r.getId()).toUri();
-
         return ResponseEntity.created(uriOfNewResource).body(restaurant);
     }
-
 }

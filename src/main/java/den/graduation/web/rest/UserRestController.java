@@ -1,7 +1,6 @@
 package den.graduation.web.rest;
 
 import den.graduation.model.User;
-import den.graduation.repository.UserRepository;
 import den.graduation.service.UserService;
 import den.graduation.util.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,30 +21,14 @@ public class UserRestController {
     @Autowired
     private final UserService userService;
 
-    @Autowired
-    private UserRepository userRepository;
-
     public UserRestController(UserService userService) {
         this.userService = userService;
     }
-/*
-    @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<User> register(@RequestParam User user) {
-        User created = userService.create(user);
-        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path(REST_URL).build().toUri();
-        return ResponseEntity.created(uriOfNewResource).body(created);
-    }
-
- */
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
-        //@ResponseStatus(value = HttpStatus.CREATED)
     ResponseEntity<Void> createUser(@RequestBody User user) {
-        ValidationUtil.checkNewUser(user);//рефакторинг 13.01
+        ValidationUtil.checkNewUser(user);
         userService.create(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
-        // return ResponseEntity.ok().build();
     }
 }

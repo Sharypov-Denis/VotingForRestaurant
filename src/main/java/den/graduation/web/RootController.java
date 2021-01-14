@@ -39,18 +39,4 @@ public class RootController {
         SecurityUtil.authUserId();
         return "redirect:restaurants";
     }
-/*
-       @GetMapping("/restaurants")
-    public String getRestaurant(Model model, HttpServletRequest request) {
-        List<Voting> list = votingService.getAllByUser(SecurityUtil.authUserId());
-        String vote = VotingUtil.createOrUpdateVoting(list);
-
-        model.addAttribute("restaurants", restaurantService.getAllRestaurants());
-        model.addAttribute("time", DataUtil.getDateNow());
-        model.addAttribute("status", vote);
-
-        return "restaurants";
-    }
- */
-
 }

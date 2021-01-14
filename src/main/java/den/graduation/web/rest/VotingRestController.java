@@ -3,7 +3,6 @@ package den.graduation.web.rest;
 
 import den.graduation.SecurityUtil;
 import den.graduation.model.Voting;
-import den.graduation.service.MenuService;
 import den.graduation.service.RestaurantService;
 import den.graduation.service.UserService;
 import den.graduation.service.VotingService;
@@ -31,9 +30,6 @@ public class VotingRestController {
     private VotingService votingService;
 
     @Autowired
-    private MenuService menuService;
-
-    @Autowired
     private UserService userService;
 
     @GetMapping("/getAllByUser/{id}")
@@ -52,16 +48,11 @@ public class VotingRestController {
     public ResponseEntity<Voting> create(@RequestBody Voting voting, @PathVariable int id) {
         voting.setUser(userService.get(SecurityUtil.authUserId()));
         voting.setRestaurant(restaurantService.getOne(id));
-        //Voting votingCreated = votingService.create(voting, id, SecurityUtil.authUserId());
-
         DataUtil.createAndUpdateVoting(id);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path(REST_URL + "/{id}")
                 .buildAndExpand(voting.getId()).toUri();
-
-        //return ResponseEntity.created(uriOfNewResource).body(votingCreated);
-        //return new ResponseEntity<>(HttpStatus.CREATED);
         return ResponseEntity.ok().build();
     }
 

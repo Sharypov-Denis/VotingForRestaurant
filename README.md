@@ -14,7 +14,10 @@
 * Bootstrap (css/js)
 * JSP/JSTL/Html
 * Tomcat
+
 Developing in IntelliJ IDEA
+
+Deploy to Heroku cloud service http://sharypovvote.herokuapp.com
 
 # The task is:
 

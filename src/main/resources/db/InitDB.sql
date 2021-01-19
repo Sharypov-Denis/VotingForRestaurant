@@ -12,7 +12,7 @@ CREATE TABLE users
 (
     id         INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     name       VARCHAR                           NOT NULL,
-    email      VARCHAR                           NOT NULL,
+    email      VARCHAR UNIQUE                    NOT NULL,
     password   VARCHAR                           NOT NULL,
     registered TIMESTAMP           DEFAULT now() NOT NULL,
     enabled    BOOL                DEFAULT TRUE  NOT NULL
@@ -30,9 +30,9 @@ CREATE TABLE user_roles
 CREATE TABLE restaurant
 (
     id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    name          TEXT    NOT NULL,
-    numberOfVotes INT     NOT NULL
-    );
+    name          TEXT NOT NULL,
+    numberOfVotes INT  NOT NULL
+);
 
 CREATE TABLE menu
 (

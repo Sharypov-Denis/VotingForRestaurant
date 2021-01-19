@@ -369,7 +369,7 @@
 
         <!--Swagger-->
 
-       <dependency>
+        <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>2.9.2</version>
@@ -381,19 +381,19 @@
        </dependency>-->
 
 
-   </dependencies>
+    </dependencies>
 
-   <dependencyManagement>
-       <dependencies>
-           <dependency>
-               <groupId>org.springframework</groupId>
-               <artifactId>spring-framework-bom</artifactId>
-               <version>${spring.version}</version>
-               <type>pom</type>
-               <scope>import</scope>
-           </dependency>
-       </dependencies>
-   </dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
 </project>

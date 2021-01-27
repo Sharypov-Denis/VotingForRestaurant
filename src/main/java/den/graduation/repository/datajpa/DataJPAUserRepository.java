@@ -4,6 +4,7 @@ import den.graduation.model.Role;
 import den.graduation.model.User;
 import den.graduation.repository.UserRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,12 +17,14 @@ public class DataJPAUserRepository implements UserRepository {
         this.crudUserRepository = crudUserRepository;
     }
 
+    @Transactional
     @Override
     public User save(User user) {
         User newUser = new User(null, user.getName(), user.getEmail().toLowerCase(), user.getPassword(), Role.USER);
         return crudUserRepository.save(newUser);
     }
 
+    @Transactional
     @Override
     public boolean delete(int id) {
         return crudUserRepository.delete(id) != 0;

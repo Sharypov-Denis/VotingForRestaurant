@@ -33,6 +33,7 @@ public class DataJPAVotingRepository {
         return crudVotingRepository.getAllByUser(userId);
     }
 
+    @Transactional
     public void delete(int id) {
         crudVotingRepository.delete(id);
     }

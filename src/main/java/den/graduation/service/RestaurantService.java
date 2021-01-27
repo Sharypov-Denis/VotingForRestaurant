@@ -3,7 +3,6 @@ package den.graduation.service;
 import den.graduation.model.Restaurant;
 import den.graduation.repository.RestaurantRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -43,12 +42,10 @@ public class RestaurantService {
         return repository.getAllRestaurants();
     }
 
-    @Transactional
     public void updateById(int id) {
         repository.updateById(id);
     }
 
-    @Transactional
     public void updateByIdMinusOne(int id) {
         repository.updateByIdMinusOne(id);
     }

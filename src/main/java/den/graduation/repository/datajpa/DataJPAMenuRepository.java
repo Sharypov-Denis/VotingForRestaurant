@@ -32,6 +32,7 @@ public class DataJPAMenuRepository implements MenuRepository {
     }
 
     @Override
+    @Transactional
     public boolean delete(int id) {
         return crudMenuRepository.delete(id) != 0;
     }

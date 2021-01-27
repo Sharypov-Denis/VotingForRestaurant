@@ -1,7 +1,6 @@
 package den.graduation;
 
 
-import den.graduation.model.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 

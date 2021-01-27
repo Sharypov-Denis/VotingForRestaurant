@@ -5,14 +5,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
 public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Integer> {
+
     @Modifying
-    @Transactional
     @Query("DELETE FROM Restaurant ex WHERE ex.id=:id")
     int delete(@Param("id") int id);
 
@@ -20,12 +19,10 @@ public interface CrudRestaurantRepository extends JpaRepository<Restaurant, Inte
     List<Restaurant> getAll();
 
     @Modifying
-    @Transactional
     @Query("UPDATE Restaurant r SET r.numberOfVotes = r.numberOfVotes + 1 WHERE r.id =:id")
     int updateById(@Param("id") int id);
 
     @Modifying
-    @Transactional
     @Query("UPDATE Restaurant r SET r.numberOfVotes = r.numberOfVotes - 1 WHERE r.id =:id")
     int updateByIdMinusOne(@Param("id") int id);
 

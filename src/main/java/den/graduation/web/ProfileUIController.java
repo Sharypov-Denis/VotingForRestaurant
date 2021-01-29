@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 
+@ApiIgnore
 @Controller
 @RequestMapping("/profile")
 public class ProfileUIController {

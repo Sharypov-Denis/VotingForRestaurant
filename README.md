@@ -11,14 +11,17 @@
 * SLF4J, Logback
 * JUnit
 * REST(Jackson)
-* Bootstrap (css/js)
+* Bootstrap (css)
 * JSP/JSTL/Html
 * Tomcat
+* Swagger
 
 Developing in IntelliJ IDEA
 
 Deploy to Heroku cloud service http://sharypovvote.herokuapp.com
 
+# Documentation
+Swagger http://localhost:8080/swagger-ui.html
 # The task is:
 
 Build a voting system for deciding where to have lunch.

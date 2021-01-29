@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-
 public abstract class AbstractUserController {
     private static final Logger log = LoggerFactory.getLogger(AbstractUserController.class);
 

@@ -25,8 +25,8 @@ import static org.junit.Assert.assertThrows;
 @Sql(scripts = "classpath:db/PopulateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 public class DataJPAUserRepositoryTest {
 
-    public final static Integer ID_100010 = 100010;
-    public final static User USER_100010 = new User(100010, "userTest",
+    public final static Integer ID_100005 = 100005;
+    public final static User USER_100005 = new User(null, "userTest",
             "userTest@mail.ru", "userTest", Role.USER);
 
     public final static Integer ID_100020 = 100020;
@@ -43,9 +43,10 @@ public class DataJPAUserRepositoryTest {
 
     @Test
     public void create() {
-        User user = userService.create(USER_100010);
-        int id = user.getId();
-        assertThat(user).isEqualTo(userService.get(id));
+        userService.create(USER_100005);
+        User user = USER_100005;
+        user.setId(ID_100005);
+        assertThat(user).isEqualTo(userService.get(100005));
     }
 
     @Test
@@ -56,7 +57,7 @@ public class DataJPAUserRepositoryTest {
     }
 
     @Test
-    void delete() {
+    public void delete() {
         User user = userService.create(USER_100030);
         userService.delete(100002);
         assertThrows(NotFoundException.class, ()-> userService.get(100002));

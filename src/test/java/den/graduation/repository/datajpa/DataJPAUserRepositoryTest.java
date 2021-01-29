@@ -1,9 +1,10 @@
 package den.graduation.repository.datajpa;
 
 
-import den.graduation.service.UserService;
 import den.graduation.model.Role;
 import den.graduation.model.User;
+import den.graduation.service.UserService;
+import javassist.NotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThrows;
 
 
 @ContextConfiguration({
@@ -52,7 +54,7 @@ public class DataJPAUserRepositoryTest {
         User user1 = userService.getByEmail("adminnew@mail.ru");
         assertThat(user).isEqualToIgnoringGivenFields(USER_100030,"registered", "roles");
     }
-/*
+
     @Test
     void delete() {
         User user = userService.create(USER_100030);
@@ -60,6 +62,6 @@ public class DataJPAUserRepositoryTest {
         assertThrows(NotFoundException.class, ()-> userService.get(100002));
     }
 
- */
+
 }
 

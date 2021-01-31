@@ -1,39 +1,39 @@
-DELETE
-FROM voting;
-DELETE
-FROM menu;
-DELETE
-FROM restaurant;
-DELETE
-FROM user_roles;
-DELETE
-FROM users;
+delete
+from voting;
+delete
+from menu;
+delete
+from restaurant;
+delete
+from user_roles;
+delete
+from users;
 
-ALTER SEQUENCE global_seq RESTART WITH 100000;
+alter sequence global_seq RESTART with 100000;
 
-INSERT INTO users (name, email, password)
-VALUES ('User', 'user@yandex.ru', 'password'),
+insert into users (name, email, password)
+values ('User', 'user@yandex.ru', 'password'),
        ('Admin', 'admin@gmail.com', 'admin'),
        ('UserMax', 'usermax@gmail.com', '12345'),
        ('UserIgor', 'userigor@gmail.com', '12345'),
        ('UserPetr', 'userpetr@gmail.com', '12345');
 
-INSERT INTO user_roles (role, user_id)
-VALUES ('USER', 100000),
+insert into user_roles (role, user_id)
+values ('USER', 100000),
        ('ADMIN', 100001),
        ('USER', 100002),
        ('USER', 100003),
        ('USER', 100004);
 
-INSERT INTO restaurant (id, name, numberOfVotes)
-VALUES (100001, 'Русский ресторан', 0),
+insert into restaurant (id, name, numberOfVotes)
+values (100001, 'Русский ресторан', 0),
        (100002, 'Индийский ресторан', 0),
        (100003, 'Китайский ресторан', 0),
        (100004, 'Европейский ресторан', 0),
        (100005, 'Японский ресторан', 0);
 
-INSERT INTO menu (id, restaurant_id, name, price, date_menu)
-VALUES (10001, 100001, 'Картофельное пюре', 50, '2021-01-12 00:00:00'),
+insert into menu (id, restaurant_id, name, price, date_menu)
+values (10001, 100001, 'Картофельное пюре', 50, '2021-01-12 00:00:00'),
        (10002, 100001, 'Куриная котлета', 80,'2021-01-12 00:00:00'),
        (10003, 100001, 'Компот', 20,'2021-01-12 00:00:00'),
        (10004, 100002, 'Курица карри', 71,'2021-01-12 00:00:00'),

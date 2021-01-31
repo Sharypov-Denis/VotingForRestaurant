@@ -10,6 +10,7 @@ import org.springframework.util.Assert;
 
 import java.util.List;
 
+
 @Service("userService")
 //@Scope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserService implements UserDetailsService {

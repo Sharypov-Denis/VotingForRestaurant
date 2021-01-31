@@ -27,7 +27,7 @@
         <!--DB-->
         <postgresql.version>42.2.14</postgresql.version>
         <!--    Tests  -->
-        <junit.version>4.13</junit.version>
+        <!--<junit.version>4.13</junit.version> -->
         <assertj.version>3.16.1</assertj.version>
 
         <!-- Hibernate -->
@@ -351,7 +351,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
+            <version>4.13.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -368,7 +368,6 @@
         </dependency>
 
         <!--Swagger-->
-
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -379,8 +378,6 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
-
-
     </dependencies>
 
     <dependencyManagement>

@@ -6,11 +6,15 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 
 public class UserServiceTest extends AbstractDataJpaTest{
@@ -57,7 +61,7 @@ public class UserServiceTest extends AbstractDataJpaTest{
     private UserService service;
 
     @After
-    //@Sql(scripts = "classpath:db/PopulateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+    @Sql(scripts = "classpath:db/PopulateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
     public void updateBase() {
     }
 
@@ -66,14 +70,12 @@ public class UserServiceTest extends AbstractDataJpaTest{
         service.create(USER_100005);
         assertEquals(service.get(100005),USER_ID_100005);
     }
-/*
+
     @Test
     public void createDuplicate() {
         assertThrows(DataAccessException.class, () ->
                 service.create(new User(null, "Duplicate", "user@yandex.ru", "newPass", Role.USER)));
     }
-
- */
 
     @Test
     public void delete() {

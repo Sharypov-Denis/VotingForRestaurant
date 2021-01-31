@@ -5,6 +5,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +56,7 @@ public class RestaurantServiceTest extends AbstractDataJpaTest {
     private RestaurantService service;
 
     @After
-   // @Sql(scripts = "classpath:db/PopulateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
+    @Sql(scripts = "classpath:db/PopulateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
     public void updateBase() {
     }
 

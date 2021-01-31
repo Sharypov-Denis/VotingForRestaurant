@@ -1,6 +1,7 @@
 package den.graduation.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Objects;
 
+@ApiModel(description = "Class representing a Restaurant in the application.")
 @NamedQueries({
         @NamedQuery(name = Restaurant.ALL_SORTED, query = "SELECT r FROM Restaurant r"),
         @NamedQuery(name = Restaurant.DELETE, query = "DELETE FROM Restaurant m WHERE m.id=:id"),

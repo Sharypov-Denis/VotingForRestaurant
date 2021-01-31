@@ -1,7 +1,9 @@
 # My project "Voting system"
+| Technology | Badge |
+|:-----------:|:-----:|
+| Travis CI | [![Build Status](https://travis-ci.com/Sharypov-Denis/VotingForRestaurant.svg?branch=master)](https://travis-ci.com/Sharypov-Denis/VotingForRestaurant) |
 
 # Technology stack
-
 * Java 14
 * Spring(Security, MVC, Data Jpa)
 * Hibernate

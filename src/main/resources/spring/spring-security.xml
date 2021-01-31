@@ -28,11 +28,6 @@
     <beans:bean name="noopEncoder" class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
 
     <http>
-        <!--Swagger
-        <intercept-url pattern="/swagger-ui.html" access="permitAll()"/>
-        <intercept-url pattern="/swagger-resources/**" access="permitAll()"/>
-        <intercept-url pattern="/v2/api-docs/**" access="permitAll()"/>-->
-
 
         <intercept-url pattern="/login" access="permitAll()"/>
 

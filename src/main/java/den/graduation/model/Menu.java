@@ -1,5 +1,6 @@
 package den.graduation.model;
 
+import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
@@ -7,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
+@ApiModel(description = "Class representing a Menu in the application.")
 @Entity
 @Table(name = "menu")
 @Proxy(lazy = false)

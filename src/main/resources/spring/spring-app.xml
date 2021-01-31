@@ -3,15 +3,14 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!-- <import resource="spring-mvc.xml"/>
-    <import resource="spring-db.xml"/>
-    <import resource="spring-security.xml"/>-->
-    <context:component-scan base-package="den.graduation.**.web"/>
+    <!--  <import resource="spring-mvc.xml"/>
+      <import resource="spring-db.xml"/>
+      <import resource="spring-security.xml"/>-->
+
+    <import resource="spring-security.xml"/>
+
     <context:component-scan base-package="den.graduation.**.service"/>
-
-    <context:component-scan base-package="den.graduation.**.repository"/>
-    <context:component-scan base-package="den.graduation.**.model"/>
-
     <context:component-scan base-package="den.graduation.**.util"/>
-    <!--<context:component-scan base-package="den.graduation.**.config"/>-->
+
+
 </beans>

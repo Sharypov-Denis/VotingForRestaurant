@@ -39,18 +39,14 @@
         <property name="jpaPropertyMap">
             <map>
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).FORMAT_SQL}" value="${hibernate.format_sql}"/>
-                <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}"
-                       value="${hibernate.use_sql_comments}"/>-->
-                <entry key="#{T(org.hibernate.cfg.AvailableSettings).JPA_PROXY_COMPLIANCE}" value="false"/>
-
-                <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl.auto}"/>-->
+                <!--  <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SQL_COMMENTS}" value="${hibernate.use_sql_comments}"/>-->
+                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).JPA_PROXY_COMPLIANCE}" value="false"/>
+                 <!--<entry key="#{T(org.hibernate.cfg.AvailableSettings).HBM2DDL_AUTO}" value="${hibernate.hbm2ddl.auto}"/>-->
 
                 <!--https://github.com/hibernate/hibernate-orm/blob/master/documentation/src/main/asciidoc/userguide/chapters/caching/Caching.adoc#caching-provider-jcache-->
-                <entry key="#{T(org.hibernate.cfg.AvailableSettings).CACHE_REGION_FACTORY}"
-                       value="org.hibernate.cache.jcache.internal.JCacheRegionFactory"/>
-                <entry key="#{T(org.hibernate.cache.jcache.ConfigSettings).PROVIDER}"
-                       value="org.ehcache.jsr107.EhcacheCachingProvider"/>
-                <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SECOND_LEVEL_CACHE}" value="true"/>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).CACHE_REGION_FACTORY}" value="org.hibernate.cache.jcache.internal.JCacheRegionFactory"/>
+                <entry key="#{T(org.hibernate.cache.jcache.ConfigSettings).PROVIDER}" value="org.ehcache.jsr107.EhcacheCachingProvider"/>
+                <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_SECOND_LEVEL_CACHE}" value="true"/> <!--default-->
                 <entry key="#{T(org.hibernate.cfg.AvailableSettings).USE_QUERY_CACHE}" value="false"/> <!--default-->
             </map>
         </property>
@@ -61,7 +57,7 @@
 
     <!-- Datasource. Источник данных - база HSQLDB
      <context:property-placeholder location="classpath:db/hsqldb.properties" system-properties-mode="OVERRIDE"/>-->
-    <!-- Datasource. Источник данных - база Heroku -->
+    <!-- Datasource. Источник данных - база Heroku-->
 
     <!-- Datasource. Источник данных - база Postgres/HSQLDB -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
@@ -109,17 +105,17 @@
     <context:annotation-config/>
 
     <!--Scanning components in base-package (look for annotations) -->
-    <context:component-scan base-package="den.graduation"/>
+    <context:component-scan base-package="den.graduation.**.repository"/>
 
     <!-- Need for Repository abstraction -->
-    <jpa:repositories base-package="den.graduation" entity-manager-factory-ref="entityManagerFactory"
+    <jpa:repositories base-package="den.graduation.**.repository" entity-manager-factory-ref="entityManagerFactory"
                       transaction-manager-ref="transactionManager"/>
     <!--
        <beans profile="tomcat">
            <jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/VoteProject"/>
            <context:property-placeholder location="classpath:db/tomcat.properties" system-properties-mode="OVERRIDE"/>
        </beans>
+-->
 
-    -->
 
 </beans>

@@ -30,6 +30,7 @@ public class DataJPARestaurantRepository implements RestaurantRepository {
     }
 
     @Override
+    @Transactional
     public boolean delete(int id) {
         return crudRestaurantRepository.delete(id) != 0;
     }

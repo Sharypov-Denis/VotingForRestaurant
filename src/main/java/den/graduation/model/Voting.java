@@ -1,11 +1,13 @@
 package den.graduation.model;
 
+import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+@ApiModel(description = "Class representing a Voting in the application.")
 @Entity
 @Table(name = "voting")
 @Proxy(lazy = false)
@@ -15,7 +17,6 @@ public class Voting {
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-
     private Integer id;
 
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()")

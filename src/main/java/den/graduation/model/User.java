@@ -1,6 +1,8 @@
 package den.graduation.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Proxy;
 import org.springframework.util.Assert;
@@ -17,6 +19,7 @@ import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
 
+@ApiModel(description = "Class representing a User in the application.")
 @NamedQueries({
         @NamedQuery(name = den.graduation.model.User.DELETE, query = "DELETE FROM User u WHERE u.id=:id"),
         @NamedQuery(name = den.graduation.model.User.BY_EMAIL, query = "SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles WHERE u.email=?1"),
@@ -33,17 +36,23 @@ public class User implements Serializable {
     public static final String BY_EMAIL = "User.getByEmail";
     public static final String ALL_SORTED = "User.getAllSorted";
 
+    @ApiModelProperty(notes = "Unique identifier of the User.",
+            example = "100000", required = true, position = 0)
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     private Integer id;
 
+    @ApiModelProperty(notes = "Email of the User.",
+            example = "user@yandex.ru", required = true, position = 1)
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotBlank
     @Size(min = 2, max = 100)
     private String email;
 
+    @ApiModelProperty(notes = "Name of the User.",
+            example = "User Max", required = true, position = 1)
     @NotBlank
     @Size(min = 2, max = 100, message = "name must be")
     @Column(name = "name", nullable = false)
@@ -58,6 +67,7 @@ public class User implements Serializable {
     @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
     private boolean enabled = true;
 
+    @ApiModelProperty(notes = "Date registration of the User.", required = true, position = 1)
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()")
     @NotNull
     private Date registered = new Date();

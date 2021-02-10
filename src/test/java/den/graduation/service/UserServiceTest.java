@@ -13,8 +13,7 @@ import org.springframework.test.context.jdbc.SqlConfig;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.*;
 
 
 public class UserServiceTest extends AbstractDataJpaTest{
@@ -104,6 +103,7 @@ public class UserServiceTest extends AbstractDataJpaTest{
     public void getAll() {
         List<User> getAllUser = service.getAll();
         assertEquals(getAllUser, userInBase);
+        assertArrayEquals("Wrong array", getAllUser.toArray(), userInBase.toArray());
 
     }
 

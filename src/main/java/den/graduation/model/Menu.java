@@ -63,6 +63,14 @@ public class Menu{
         this.price = price;
     }
 
+    public Menu(Integer id, Restaurant restaurant, String name, int price, LocalDateTime dateTime) {
+        this.id = id;
+        this.restaurant = restaurant;
+        this.name = name;
+        this.price = price;
+        this.dateTime = dateTime;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -95,6 +103,7 @@ public class Menu{
         this.restaurant = restaurant;
     }
 
+    //@JsonIgnore
     public boolean isNew() {
         return this.id == null;
     }

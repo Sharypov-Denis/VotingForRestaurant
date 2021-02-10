@@ -5,8 +5,11 @@ DROP TABLE IF EXISTS restaurant;
 DROP TABLE IF EXISTS users;
 
 DROP SEQUENCE IF EXISTS global_seq;
+DROP SEQUENCE IF EXISTS global_seqMenu;
 
 CREATE SEQUENCE global_seq START WITH 100000;
+
+CREATE SEQUENCE global_seqMenu START WITH 10001;
 
 CREATE TABLE users
 (
@@ -36,7 +39,7 @@ CREATE TABLE restaurant
 
 CREATE TABLE menu
 (
-    id            INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    id            INTEGER PRIMARY KEY DEFAULT nextval('global_seqMenu'),
     restaurant_id INTEGER NOT NULL,
     name          TEXT    NOT NULL,
     price         INT     NOT NULL,

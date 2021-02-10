@@ -93,6 +93,7 @@ public class RestaurantServiceTest extends AbstractDataJpaTest {
     @Test
     public void getAllRestaurants() {
         assertThat(restaurantsInBase).usingElementComparatorIgnoringFields("menus").isEqualTo(service.getAll());
+        //assertArrayEquals("Wrong array", service.getAll().toArray(), restaurantsInBase.toArray());
     }
 
     @Test

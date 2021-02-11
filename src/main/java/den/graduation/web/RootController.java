@@ -10,17 +10,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @ApiIgnore
 @Controller
 public class RootController {
+
+    private AtomicInteger visitsCounter = new AtomicInteger(0);
+    public void init() {
+        visitsCounter.getAndIncrement();
+        System.out.println("Счетчик посещений страницы: " + visitsCounter);
+    }
+
+    /*another variant
+    private volatile int visitsCounter;
+    public void init() {
+        visitsCounter = 0;
+    }
+    synchronized void increaseAmountOfVisits() {
+        visitsCounter++;
+    }
+    */
 
     @Autowired
     private UserService userService;
 
     @GetMapping("/")
     public String root() {
-        //  return "index";
         return "index";
     }
 
@@ -32,6 +48,8 @@ public class RootController {
 
     @GetMapping(value = "/login")
     public String login() {
+        //increaseAmountOfVisits();
+        init();
         return "login";
     }
 

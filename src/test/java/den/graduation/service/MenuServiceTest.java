@@ -14,7 +14,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 //@RunWith(MockitoJUnitRunner.class)
-public class MenuServiceTest extends AbstractDataJpaTest {
+public class MenuServiceTest extends AbstractDataJpaTest{
 
     public static List<Menu> menusInBaseForRestaurant100000 = Arrays.asList(
             new Menu(10001, new Restaurant(100000,"Русский ресторан", 0), "Картофельное пюре", 50, LocalDateTime.of(2021,Month.JANUARY,12, 00,00,00)),
@@ -96,7 +96,7 @@ public class MenuServiceTest extends AbstractDataJpaTest {
         assertThat(service.get(10003, 100000)).isEqualToIgnoringGivenFields(menu_10003_update,"restaurant", "dateTime");
     }
 
-    @Test
+    @Test(timeout = 800)
     public void create() {
         newMenu.setRestaurant(restaurant_100000);
         newMenu.setDateTime(LocalDateTime.of(2021,Month.JANUARY,12, 00,00,00));
@@ -109,6 +109,6 @@ public class MenuServiceTest extends AbstractDataJpaTest {
     @Test
     public void getAllMenu() {
         assertThat(menusInBase).usingElementComparatorIgnoringFields("restaurant", "dateTime").isEqualTo(service.getAllMenu());
-        //assertArrayEquals("Wrong array", service.getAllMenu().toArray(), menusInBase.toArray());
+       // assertArrayEquals("Wrong array", service.getAllMenu().toArray(), menusInBase.toArray());
     }
 }
